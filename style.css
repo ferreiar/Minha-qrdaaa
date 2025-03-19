@@ -151,6 +151,10 @@ nav a img {
     pointer-events: none;
 }
 
+.contbai{
+    margin-top: 80px;
+    font-size: 35px;
+}
 @media (max-width: 768px) {
     .bg-noite {
         background-image: url('imgs/Noite-estrelada-cell.png');
@@ -173,5 +177,10 @@ nav a img {
         top: -40px; /* Levanta a logo para fora do carrossel */
         right: -27px; /* Move a logo para cobrir a borda */
         width: 70px; /* Ajuste fino no tamanho */
+    }
+
+    .contbai{
+        margin-top: 10px;
+        font-size: 25px;
     }
 }

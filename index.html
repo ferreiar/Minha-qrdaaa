@@ -30,7 +30,7 @@
         </ul>
 
         <!-- Menu Mobile -->
-        <ul class="md:hidden hidden flex-col space-y-4 text-center mt-4 bg-transparent p-4 absolute w-full left-0 top-16 z-40" id="mobile-menu">
+        <ul class="md:hidden hidden flex-col space-y-4 text-center mt-4 bg-black p-4 absolute w-full left-0 top-16 z-40" id="mobile-menu">
             <li><a href="#first-section" class="text-[20px] FunnelDi text-white font-semibold nav-link">Início</a></li>
             <li><a href="#second-section" class="text-[20px] FunnelDi text-white font-semibold nav-link">Segunda Seção</a></li>
             <li><a href="#third-section" class="text-[20px] FunnelDi text-white font-semibold nav-link">Terceira Seção</a></li>
@@ -49,8 +49,10 @@
         </div>
     </section>
 
-    <section id="secao2" class="bg-[#0C1445] w-screen min-h-screen flex flex-col items-center justify-center text-center px-6 py-10 md:p-8 overflow-hidden">
+    <section id="secao2" class="bg-[#0C1445] w-screen min-h-screen flex flex-col md:flex-row items-center md:items-start justify-center px-6 py-10 md:p-8 overflow-hidden">
+        <!-- Div do conteúdo esquerdo -->
         <div class="md:w-1/2 w-full text-center md:text-left mb-8 md:mb-0 md:pr-8">
+            <!-- Título e texto principal não mudam -->
             <h2 class="text-3xl md:text-4xl font-bold mb-4 max-w-full break-words">
                 <span class="typing-animation" data-text="<span class='FunnelDi'>E foi assim que, o <span class='Pacifico text-[#F4D03F]'>meu sol</span> nasceu aquele dia.</span>"></span>
                 <span class="typing-cursor cursor"></span>
@@ -63,19 +65,25 @@
                 Muito obrigado, minha flor, por me fazer feliz naquele dia.    
             </p>
             <br>
-            <p class="text-center FunnelDi max-w-full break-words w-full">
-                Meu sol começou a brilhar há:
-            </p>
-            
-            <!-- Contador de tempo -->
-            <div id="contador" class="w-full max-w-[350px] mx-auto text-center border-4 border-[#FFD700] outline-[#FDD700] outline-double FunnelDi text-white font-bold text-lg md:text-xl p-4 mt-4 rounded-lg">
-                <span id="years">0</span> anos,
-                <span id="days">0</span> dias,
-                <span id="hours">0</span> horas,
-                <span id="minutes">0</span> minutos,
-                <span id="seconds">0</span> segundos.
-            </div>
+            <!-- Texto do contador com ajuste apenas para centralizar no mobile -->
+            <div class="contbai flex flex-col items-center md:items-start">
+                <p class="ml-[17px] text-center FunnelDi max-w-full break-words">
+                    <span class="Pacifico text-[#F4D03F]">Meu sol</span> começou a brilhar há:
+                </p>
+                <br>
     
+                <!-- Contador centralizado apenas no mobile -->
+                <div id="contador" class="relative border-[5px] border-[#1A237E] outline-[15px] outline-[#FDD700] outline-double FunnelDi text-white font-bold text-lg md:text-xl p-4 mt-6 rounded-lg border-4 border-[#FFD700] inline-block max-w-full">
+                    <span id="years">0</span> anos,
+                    <span id="days">0</span> dias,
+                    <span id="hours">0</span> horas,
+                    <span id="minutes">0</span> minutos,
+                    <span id="seconds">0</span> segundos.
+                </div>
+            </div>
+        </div>
+    
+        <!-- Carrossel (não alterado) -->
         <div class="carousel-container w-full md:w-auto mt-6 md:mt-0">
             <div class="carousel">
                 <div class="carousel-inner">
