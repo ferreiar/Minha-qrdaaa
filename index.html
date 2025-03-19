@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Qrdaa</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/8990a4aeb8.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="imgs/Logo girassol.png" type="image/x-icon">
+</head>
+<body class="text-white">
+    
+ <!-- Navbar -->
+<nav id="cabeca" class="fixed top-0 left-0 w-full bg-transparent z-50 transition-all duration-300">
+    <div class="container mx-auto flex justify-between items-center p-4">
+        <!-- Logo -->
+        <a href="/"><img class="logoImg" src="imgs/Logo girassol.png" alt="Logo Girassol"></a>
+
+        <!-- Menu Hamburguer (Mobile) -->
+        <button class="md:hidden block text-white focus:outline-none" id="menu-button">
+            <i class="fas fa-bars text-2xl"></i>
+        </button>
+
+        <!-- Menu Desktop -->
+        <ul class="hidden md:flex gap-10" id="menu">
+            <li><a href="#first-section" class="text-[25px] FunnelDi text-white font-semibold nav-link">Início</a></li>
+            <li><a href="#second-section" class="text-[25px] FunnelDi text-white font-semibold nav-link">Segunda Seção</a></li>
+            <li><a href="#third-section" class="text-[25px] FunnelDi text-white font-semibold nav-link">Terceira Seção</a></li>
+        </ul>
+
+        <!-- Menu Mobile -->
+        <ul class="md:hidden hidden flex-col space-y-4 text-center mt-4 bg-transparent p-4 absolute w-full left-0 top-16 z-40" id="mobile-menu">
+            <li><a href="#first-section" class="text-[20px] FunnelDi text-white font-semibold nav-link">Início</a></li>
+            <li><a href="#second-section" class="text-[20px] FunnelDi text-white font-semibold nav-link">Segunda Seção</a></li>
+            <li><a href="#third-section" class="text-[20px] FunnelDi text-white font-semibold nav-link">Terceira Seção</a></li>
+        </ul>
+    </div>
+</nav>
+    
+    <!-- Primeira seção com animação -->
+    <section id="secao1" class="bg-noite w-screen h-screen flex items-center justify-center">
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="relative text-center z-10">
+            <h2 class="text-3xl md:text-5xl font-bold">
+                <span class="typing-animation" data-text="<span class='FunnelDi'>Olá <span class='Pacifico text-[#F4D03F]'>meu girassol</span>, tudo bem? Você está brilhando muito hoje.</span>"></span>
+                <span class="typing-cursor cursor"></span>
+            </h2>
+        </div>
+    </section>
+
+    <section id="secao2" class="bg-[#0C1445] w-screen min-h-screen flex flex-col items-center justify-center text-center px-6 py-10 md:p-8 overflow-hidden">
+        <div class="md:w-1/2 w-full text-center md:text-left mb-8 md:mb-0 md:pr-8">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 max-w-full break-words">
+                <span class="typing-animation" data-text="<span class='FunnelDi'>E foi assim que, o <span class='Pacifico text-[#F4D03F]'>meu sol</span> nasceu aquele dia.</span>"></span>
+                <span class="typing-cursor cursor"></span>
+            </h2>
+            <p class="text-lg FunnelDi max-w-full break-words">
+                Bem, esse dia é muito especial para mim, pois foi quando uma luz mais forte começou a aparecer na minha vida. Agradeço com carinho a Deus por ter me dado essa flor. Naquele dia, eu estava nervoso e com vergonha, mas, acima de tudo, consegui ter uma noite maravilhosa ao lado dela.
+    
+                Lembro-me de que ela não conseguia olhar para o meu rosto e, quando olhava, era por breves segundos. Mas o que eu realmente quero dizer sobre esse dia é que a melhor parte foi quando ela se apoiou em meu ombro durante o filme. Eu me senti confortável e extremamente feliz.
+    
+                Muito obrigado, minha flor, por me fazer feliz naquele dia.    
+            </p>
+            <br>
+            <p class="text-center FunnelDi max-w-full break-words w-full">
+                Meu sol começou a brilhar há:
+            </p>
+            
+            <!-- Contador de tempo -->
+            <div id="contador" class="w-full max-w-[350px] mx-auto text-center border-4 border-[#FFD700] outline-[#FDD700] outline-double FunnelDi text-white font-bold text-lg md:text-xl p-4 mt-4 rounded-lg">
+                <span id="years">0</span> anos,
+                <span id="days">0</span> dias,
+                <span id="hours">0</span> horas,
+                <span id="minutes">0</span> minutos,
+                <span id="seconds">0</span> segundos.
+            </div>
+    
+        <div class="carousel-container w-full md:w-auto mt-6 md:mt-0">
+            <div class="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item">
+                        <img src="imgs/Primeiro dia pt1.jpeg" alt="Imagem 1">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="imgs/Primeiro dia pt2.jpeg" alt="Imagem 2">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="imgs/Primeiro dia pt3.jpeg" alt="Imagem 3">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="imgs/Segundo dia pt 1.jpeg" alt="Imagem 4">
+                    </div>
+                </div>
+            </div>
+            <img src="imgs/Logo girassol.png" alt="Logo" class="carousel-logo">
+        </div>
+    </section>
+    
+    <script src="JS/menu-mobile.js"></script>
+    <script src="JS/cursor.js"></script>
+    <script src="JS/carrossel.js"></script>
+    <script src="JS/scroll.js"></script>
+    <script src="JS/nav.js"></script>
+    <script src="JS/contador1.js"></script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Pacifico&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&family=Tiny5&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Pacifico&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&family=Tiny5&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+.bg-noite {
+    background-image: url(imgs/84366.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.cursor {
+    display: inline-block;
+    width: 3px;
+    background-color: white;
+    margin-left: 4px;
+    animation: blink 1s infinite;
+    height: 1.2em; /* Altura proporcional ao texto */
+    vertical-align: text-bottom; /* Alinha na base do texto */
+}
+
+.FunnelDi{
+    font-family: Funnel Display;
+    text-shadow:  
+    -1px -1px 0 black,  
+         1px -1px 0 black,  
+        -1px  1px 0 black,  
+         1px  1px 0 black,  
+        -1.5px -1.5px 0 black,  
+         1.5px -1.5px 0 black,  
+        -1.5px  1.5px 0 black,  
+         1.5px  1.5px 0 black; /* Contorno leve */
+}
+
+.Pacifico{
+    font-family: Pacifico;
+    text-shadow:  
+    -1px -1px 0 black,  
+         1px -1px 0 black,  
+        -1px  1px 0 black,  
+         1px  1px 0 black,  
+        -1.5px -1.5px 0 black,  
+         1.5px -1.5px 0 black,  
+        -1.5px  1.5px 0 black,  
+         1.5px  1.5px 0 black; /* Contorno leve */
+}
+
+/* Animação de piscar */
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+/* Remover a animação de piscar após 5 segundos */
+@keyframes stop-blink {
+    to {
+        opacity: 0;
+    }
+}
+
+ /* Estilo do carrossel */
+ .carousel {
+    width: 100%;
+    max-width: 400px; /* Largura máxima do carrossel */
+    overflow: hidden;
+    position: relative;
+    border-radius: 6px;
+    outline: 10px solid #FFD700; /* Dourado suave */
+    position: relative;
+}
+
+.carousel-container {
+    position: relative;
+    display: inline-block;
+    padding: 10px; /* Espaço para a borda */
+    border: 5px solid #1A237E; /* Azul-noite-vibrante */
+    box-shadow: 0 0 0 10px #FFD700; /* Dourado Suave */
+    border-radius: 8px;
+}
+
+.carousel-logo {
+    position: absolute;
+    top: -40px; /* Levanta a logo para fora do carrossel */
+    right: -35px; /* Move a logo para cobrir a borda */
+    width: 100px; /* Ajuste fino no tamanho */
+    height: auto;
+    z-index: 101; /* Mantém a logo acima de tudo */
+}
+
+.carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+.carousel-item img {
+    width: 100%;
+    display: block;
+}
+
+/* Scroll suave */
+html {
+    scroll-behavior: smooth;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0 15px;
+    font-size: 15pt;
+    position: relative;
+}
+
+nav .nav-link {
+    display: inline-block; /* Garante que o link se comporte como um bloco para a linha */
+}
+
+nav .nav-link::after {
+    content: " ";
+    width: 0; /* Começa com largura 0 */
+    height: 4px;
+    background-color: transparent;
+    position: absolute;
+    bottom: 0; /* Ajusta a posição para ficar colado na base da letra */
+    left: 12px; /* Começa na posição inicial */
+    transition: width 0.5s ease-in-out, background-color 0.5s ease-in-out; /* Transição para a largura e cor */
+}
+
+nav .nav-link:hover::after {
+    background-color: var(--line-color);
+    width: 100%; /* A linha se expande para 100% da largura */
+}
+
+nav .nav-link:hover {
+    opacity: .85;
+}
+
+.logoImg {
+    width: 60px;
+    height: 60px;
+}
+
+nav a img {
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .bg-noite {
+        background-image: url('imgs/Noite-estrelada-cell.png');
+    }
+
+    .bg-nav{
+        background-color: transparent;
+    }
+
+    .carousel {
+        max-width: 100%; /* Carrossel ocupa toda a largura em telas menores */
+    }
+
+    .logoImg{
+        width: 40px;
+        height: 40px;
+    }
+
+    .carousel-logo{
+        top: -40px; /* Levanta a logo para fora do carrossel */
+        right: -27px; /* Move a logo para cobrir a borda */
+        width: 70px; /* Ajuste fino no tamanho */
+    }
+}
