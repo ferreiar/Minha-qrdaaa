@@ -15,7 +15,7 @@
 <nav id="cabeca" class="fixed top-0 left-0 w-full bg-transparent z-50 transition-all duration-300">
     <div class="container mx-auto flex justify-between items-center p-4">
         <!-- Logo -->
-        <a href="/"><img class="logoImg" src="imgs/Logo girassol.png" alt="Logo Girassol"></a>
+        <a href="#"><img class="logoImg" src="imgs/Logo girassol.png" alt="Logo Girassol"></a>
 
         <!-- Menu Hamburguer (Mobile) -->
         <button class="md:hidden block text-white focus:outline-none" id="menu-button">
@@ -39,8 +39,8 @@
 </nav>
     
     <!-- Primeira seção com animação -->
-    <section id="first-section" class="bg-noite w-screen h-screen flex items-center justify-center">
-        <div class="absolute inset-0 bg-black opacity-50"></div>
+    <section id="first-section" class="bg-noite w-screen h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-50"></div>
         <div class="relative text-center z-10">
             <h2 class="text-3xl md:text-5xl font-bold">
                 <span class="typing-animation" data-text="<span class='FunnelDi'>Olá <span class='Pacifico text-[#F4D03F]'>meu girassol</span>, tudo bem? Você está brilhando muito hoje.</span>"></span>
@@ -51,29 +51,27 @@
 
     <section id="second-section" class="bg-[#0C1445] w-screen min-h-screen flex flex-col md:flex-row items-center md:items-start justify-center px-6 py-10 md:p-8 overflow-hidden">
         <!-- Div do conteúdo esquerdo -->
-        <div class="md:w-1/2 w-full text-center md:text-left mb-8 md:mb-0 md:pr-8">
+        <div class="escritabai md:w-1/2 w-full text-center md:text-left mb-8 md:mb-0 md:pr-8">
             <!-- Título e texto principal não mudam -->
             <h2 class="text-3xl md:text-4xl font-bold mb-4 max-w-full break-words">
                 <span class="typing-animation" data-text="<span class='FunnelDi'>E foi assim que, o <span class='Pacifico text-[#F4D03F]'>meu sol</span> nasceu aquele dia.</span>"></span>
                 <span class="typing-cursor cursor"></span>
             </h2>
-            <p class="text-lg FunnelDi max-w-full break-words">
-                Bem, esse dia é muito especial para mim, pois foi quando uma luz mais forte começou a aparecer na minha vida. Agradeço com carinho a Deus por ter me dado essa flor. Naquele dia, eu estava nervoso e com vergonha, mas, acima de tudo, consegui ter uma noite maravilhosa ao lado dela.
-    
-                Lembro-me de que ela não conseguia olhar para o meu rosto e, quando olhava, era por breves segundos. Mas o que eu realmente quero dizer sobre esse dia é que a melhor parte foi quando ela se apoiou em meu ombro durante o filme. Eu me senti confortável e extremamente feliz.
-    
-                Muito obrigado, minha flor, por me fazer feliz naquele dia.    
+            <p class="text-lg FunnelDi max-w-full">
+                Bem, esse dia foi muito especial para mim, pois marcava o incio de algo importante. Apesar do nevorsismo, tive uma noite inctível ao lado
+                de voce. Um dos momnetos inesquecíveis foi qunado você se apoio no meu ombro durante o filme, me fez sentir muito feliz. Sou grato a Deus por
+                essa flor em minha vida.    
             </p>
             <br>
             <!-- Texto do contador com ajuste apenas para centralizar no mobile -->
             <div class="contbai flex flex-col items-center md:items-start">
-                <p class="ml-[17px] text-center FunnelDi max-w-full break-words">
-                    <span class="Pacifico text-[#F4D03F]">Meu sol</span> começou a brilhar há:
+                <p class="text-center FunnelDi max-w-full break-words">
+                    <span class="ml-[30px] Pacifico text-[#F4D03F]">Meu sol</span> começou a brilhar há:
                 </p>
                 <br>
     
                 <!-- Contador centralizado apenas no mobile -->
-                <div id="contador" class="relative border-[5px] border-[#1A237E] outline-[15px] outline-[#FDD700] outline-double FunnelDi text-white font-bold text-lg md:text-xl p-4 mt-6 rounded-lg border-4 border-[#FFD700] inline-block max-w-full">
+                <div id="contador" class="relative border-[5px] border-[#1A237E] outline-[10px] outline-[#FDD700] outline-double FunnelDi text-white font-bold text-lg md:text-xl p-4 mt-6 rounded-lg border-4 border-[#FFD700] inline-block max-w-full">
                     <span id="years">0</span> anos,
                     <span id="days">0</span> dias,
                     <span id="hours">0</span> horas,
@@ -84,7 +82,7 @@
         </div>
     
         <!-- Carrossel (não alterado) -->
-        <div class="carousel-container w-full md:w-auto mt-6 md:mt-0">
+        <div class="carousel-container w-full md:w-auto carrobai md:mt-0">
             <div class="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item">

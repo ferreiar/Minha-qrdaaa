@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Pacifico&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&family=Tiny5&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&family=Pacifico&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&family=Tiny5&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 
+body{
+    overflow-x: hidden;
+}
+
 .bg-noite {
     background-image: url(imgs/84366.jpg);
     background-size: cover;
@@ -61,38 +65,39 @@
     }
 }
 
- /* Estilo do carrossel */
- .carousel {
+.carousel {
     width: 100%;
-    max-width: 400px; /* Largura máxima do carrossel */
+    max-width: 250px; /* Ajusta o tamanho */
     overflow: hidden;
     position: relative;
     border-radius: 6px;
-    outline: 10px solid #FFD700; /* Dourado suave */
-    position: relative;
+    outline: 6px solid #FFD700;
 }
 
 .carousel-container {
+    padding: 5px;
+    border: 3px solid #1A237E;
+    box-shadow: 0 0 0 6px #FFD700;
+    border-radius: 6px;
     position: relative;
-    display: inline-block;
-    padding: 10px; /* Espaço para a borda */
-    border: 5px solid #1A237E; /* Azul-noite-vibrante */
-    box-shadow: 0 0 0 10px #FFD700; /* Dourado Suave */
-    border-radius: 8px;
+    display: flex; /* Impede que o carrossel estenda para baixo */
+    justify-content: center;
+    align-items: center;
 }
 
 .carousel-logo {
     position: absolute;
-    top: -40px; /* Levanta a logo para fora do carrossel */
-    right: -35px; /* Move a logo para cobrir a borda */
-    width: 100px; /* Ajuste fino no tamanho */
+    top: -30px; /* Ajusta para ficar visível */
+    right: -15px;
+    width: 80px; /* Mantém o girassol visível */
     height: auto;
-    z-index: 101; /* Mantém a logo acima de tudo */
+    z-index: 101;
 }
 
 .carousel-inner {
     display: flex;
     transition: transform 0.5s ease-in-out;
+    height: auto; /* Evita que ele cresça para baixo */
 }
 
 .carousel-item {
@@ -104,7 +109,6 @@
     width: 100%;
     display: block;
 }
-
 /* Scroll suave */
 html {
     scroll-behavior: smooth;
@@ -152,9 +156,17 @@ nav a img {
 }
 
 .contbai{
-    margin-top: 80px;
-    font-size: 35px;
+    font-size: 30px;
 }
+
+.carrobai{
+    margin-top: 75px !important;
+}
+
+.escritabai{
+    margin-top: 75px;
+}
+
 @media (max-width: 768px) {
     .bg-noite {
         background-image: url('imgs/Noite-estrelada-cell.png');
@@ -166,6 +178,16 @@ nav a img {
 
     .carousel {
         max-width: 100%; /* Carrossel ocupa toda a largura em telas menores */
+    }
+
+    .carousel-container {
+        width: 90%; /* Reduz a largura do carrossel */
+        max-width: 300px; /* Limite máximo para não ficar muito grande */
+    }
+
+    .carousel img {
+        width: 100%; /* Garante que as imagens fiquem dentro do contêiner */
+        height: auto; /* Mantém a proporção */
     }
 
     .logoImg{
@@ -183,4 +205,13 @@ nav a img {
         margin-top: 10px;
         font-size: 25px;
     }
+
+    .carrobai{
+        margin-top: 25px !important;
+    }
+
+    .escritabai{
+        margin-top: 25px;
+    }
+
 }
