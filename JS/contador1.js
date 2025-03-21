@@ -4,12 +4,14 @@ function atualizarContador() {
     const diferenca = agora - dataInicial;
 
     const anos = Math.floor(diferenca / (1000 * 60 * 60 * 24 * 365));
-    const dias = Math.floor((diferenca % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24));
+    const meses = Math.floor((diferenca % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30.44)); // Considerando mês médio de 30.44 dias
+    const dias = Math.floor((diferenca % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24));
     const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
     const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
 
     document.getElementById("years").textContent = anos;
+    document.getElementById("months").textContent = meses;
     document.getElementById("days").textContent = dias;
     document.getElementById("hours").textContent = horas;
     document.getElementById("minutes").textContent = minutos;
