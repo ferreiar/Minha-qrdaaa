@@ -168,6 +168,27 @@ nav a img {
     margin-top: 75px;
 }
 
+/* Estilos para as borboletas */
+.butterfly {
+    position: absolute;
+    pointer-events: none;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.7));
+    animation: flutter 2s infinite alternate ease-in-out;
+    will-change: transform; /* Otimização de performance */
+}
+
+@keyframes flutter {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-5px) rotate(5deg);
+    }
+    100% {
+        transform: translateY(0) rotate(-5deg);
+    }
+}
+
 @media (max-width: 768px) {
     .bg-noite {
         background-image: url('imgs/Noite-estrelada-cell.png');
@@ -213,6 +234,22 @@ nav a img {
 
     .escritabai{
         margin-top: 25px;
+    }
+
+    .butterfly {
+        animation: flutter 1.5s infinite alternate ease-in-out; /* Animação mais rápida em mobile */
+    }
+    
+    @keyframes flutter {
+        0% {
+            transform: translateY(0) rotate(0deg);
+        }
+        50% {
+            transform: translateY(-3px) rotate(3deg);
+        }
+        100% {
+            transform: translateY(0) rotate(-3deg);
+        }
     }
 
 }

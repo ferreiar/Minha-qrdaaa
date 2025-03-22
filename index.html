@@ -103,9 +103,25 @@
         </div>
     </section>
 
-    <section id="third-section" class="bg-[#87CEEB] w-screen min-h-screen flex flex-col md:flex-row items-center md:items-start justify-center px-6 py-10 md:p-8 overflow-hidden">
-
-
+    <section id="third-section" class="bg-[#87CEEB] w-screen min-h-screen flex flex-col items-center justify-center px-4 py-16 md:px-6 md:py-10 overflow-hidden relative">
+        <!-- Título da seção -->
+        <div class="relative text-center z-10 mb-6 md:mb-8">
+            <h2 class="text-2xl md:text-3xl lg:text-5xl font-bold text-[#0C1445]">
+                <span class="typing-animation" data-text="<span class='FunnelDi'>Voando como <span class='Pacifico text-[#0C1445]'>borboletas</span> em um céu azul.</span>"></span>
+                <span class="typing-cursor cursor"></span>
+            </h2>
+        </div>
+        
+        <!-- Conteúdo adicional se necessário -->
+        <div class="text-center z-10 max-w-xs sm:max-w-md md:max-w-2xl">
+            <p class="text-base md:text-lg FunnelDi text-[#0C1445]">
+                Assim como as borboletas transformam-se e voam livremente pelo céu, 
+                nosso amor se transforma e cresce a cada dia, livre e leve como o vento.
+            </p>
+        </div>
+        
+        <!-- Container para as borboletas -->
+        <div id="butterfly-container" class="absolute top-0 left-0 w-full h-full overflow-hidden"></div>
     </section>
     
     <script src="JS/menu-mobile.js"></script>
@@ -114,5 +130,6 @@
     <script src="JS/scroll.js"></script>
     <script src="JS/nav.js"></script>
     <script src="JS/contador1.js"></script>
+    <script src="JS/borboleta.js"></script>
 </body>
 </html>
