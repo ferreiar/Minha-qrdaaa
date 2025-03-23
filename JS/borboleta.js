@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const container = document.getElementById('butterfly-container');
     const section = document.getElementById('third-section');
     
+    if (!container || !section) return; // Sair se os elementos não existirem
+    
     // Detectar se é dispositivo móvel
     const isMobile = window.innerWidth <= 768;
     
@@ -104,37 +106,4 @@ document.addEventListener('DOMContentLoaded', function() {
         // Iniciar animação
         requestAnimationFrame(animate);
     }
-    
-    // Ajustar quando a janela for redimensionada
-    window.addEventListener('resize', function() {
-        // Atualizar flag de dispositivo móvel
-        const wasMobile = isMobile;
-        const nowMobile = window.innerWidth <= 768;
-        
-        // Se mudou entre mobile e desktop, recarregar a página
-        // para ajustar o número e tamanho das borboletas
-        if (wasMobile !== nowMobile) {
-            location.reload();
-        }
-    });
-    
-    // Otimização para dispositivos móveis: pausar animação quando a seção não estiver visível
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting) {
-                // Remover todas as borboletas quando a seção não estiver visível
-                const butterflies = container.querySelectorAll('.butterfly');
-                butterflies.forEach(b => b.remove());
-            } else {
-                // Recriar borboletas quando a seção ficar visível novamente
-                if (container.querySelectorAll('.butterfly').length === 0) {
-                    for (let i = 0; i < butterflyCount; i++) {
-                        createButterfly();
-                    }
-                }
-            }
-        });
-    }, { threshold: 0.1 });
-    
-    observer.observe(section);
 });

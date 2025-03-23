@@ -81,48 +81,80 @@
             </div>
         </div>
     
-        <!-- Carrossel (não alterado) -->
-        <div class="carousel-container w-full md:w-auto carrobai md:mt-0">
-            <div class="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item">
-                        <img src="imgs/Primeiro dia pt1.jpeg" alt="Imagem 1">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="imgs/Primeiro dia pt2.jpeg" alt="Imagem 2">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="imgs/Primeiro dia pt3.jpeg" alt="Imagem 3">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="imgs/Segundo dia pt 1.jpeg" alt="Imagem 4">
-                    </div>
-                </div>
+        <!-- Carrossel da segunda seção -->
+<div class="carousel-container w-full md:w-auto carrobai md:mt-0">
+    <div class="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item">
+                <img src="imgs/Primeiro dia pt1.jpeg" alt="Imagem 1">
             </div>
-            <img src="imgs/Logo girassol.png" alt="Logo" class="carousel-logo">
+            <div class="carousel-item">
+                <img src="imgs/Primeiro dia pt2.jpeg" alt="Imagem 2">
+            </div>
+            <div class="carousel-item">
+                <img src="imgs/Primeiro dia pt3.jpeg" alt="Imagem 3">
+            </div>
+            <div class="carousel-item">
+                <img src="imgs/Segundo dia pt 1.jpeg" alt="Imagem 4">
+            </div>
         </div>
+    </div>
+    <img src="imgs/Logo girassol.png" alt="Logo" class="carousel-logo">
+</div>
     </section>
 
-    <section id="third-section" class="bg-[#87CEEB] w-screen min-h-screen flex flex-col items-center justify-center px-4 py-16 md:px-6 md:py-10 overflow-hidden relative">
-        <!-- Título da seção -->
-        <div class="relative text-center z-10 mb-6 md:mb-8">
-            <h2 class="text-2xl md:text-3xl lg:text-5xl font-bold text-[#0C1445]">
-                <span class="typing-animation" data-text="<span class='FunnelDi'>Voando como <span class='Pacifico text-[#0C1445]'>borboletas</span> em um céu azul.</span>"></span>
+    <section id="third-section" class="bg-[#87CEEB] w-screen min-h-screen flex flex-col md:flex-row items-center md:items-start justify-center px-6 py-10 md:p-8 overflow-hidden relative">
+        <!-- Carrossel da terceira seção -->
+<div class="carousel-container carousel-blue-container w-full md:w-auto carrobai md:mt-0 order-2 md:order-1">
+    <div class="carousel carousel-blue">
+        <div class="carousel-inner">
+            <div class="carousel-item">
+                <img src="imgs/Primeira vez na casa dela pt1.jpeg" alt="Borboleta 1">
+            </div>
+            <div class="carousel-item">
+                <img src="imgs/Primeira vez na casa dela pt2.jpeg" alt="Borboleta 2">
+            </div>
+            <div class="carousel-item">
+                <img src="imgs/Segunda vez na casa dela.jpeg" alt="Borboleta 3">
+            </div>
+        </div>
+    </div>
+    <img src="imgs/Borboleta Azul.png" alt="borbolg Borboleta Logo" class="carousel-logo">
+</div>
+    
+        <!-- Div do conteúdo direito -->
+        <div class="escritabai md:w-1/2 w-full text-center md:text-left mb-8 md:mb-0 md:pl-8 order-1 md:order-2">
+            <!-- Título com animação de digitação -->
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 max-w-full break-words">
+                <span class="typing-animation" data-text="<span class='FunnelDi text-white'>Voando como <span class='Pacifico text-[#568EA7]'>borboletas</span> em um céu azul.</span>"></span>
                 <span class="typing-cursor cursor"></span>
             </h2>
-        </div>
-        
-        <!-- Conteúdo adicional se necessário -->
-        <div class="text-center z-10 max-w-xs sm:max-w-md md:max-w-2xl">
-            <p class="text-base md:text-lg FunnelDi text-[#0C1445]">
-                Assim como as borboletas transformam-se e voam livremente pelo céu, 
-                nosso amor se transforma e cresce a cada dia, livre e leve como o vento.
+            
+            <!-- Texto sem animação -->
+            <p class="text-lg FunnelDi max-w-full text-white">
+                O tão sonhado dia de te dar aquela surpresa... Estava ansioso para dar uma borboleta a uma flor. Quando a entreguei, a flor sorriu, chorou de alegria e, ao fim, sabia que um novo capítulo se iniciava. Mas não qualquer capítulo, e sim um capítulo especial, onde ela sabia que caminharíamos juntos.
             </p>
+            <br>
+           <!-- Contador de tempo de relacionamento no estilo de referência -->
+           <div class="contbai flex flex-col items-center md:items-start">
+            <p class="text-center FunnelDi max-w-full break-words">
+                <span class="ml-[30px] Pacifico text-[#568EA7]">Minha borboleta</span> está comigo há:
+            </p>
+            <br>
+            <div id="contador2" class="relative p-3 contbaii max-w-full FunnelDi text-white font-bold text-sm sm:text-base md:text-lg text-center bg-[#0C1445] border-[5px] border-[#0C1445] rounded-2xl shadow-lg">
+                <span id="years2"></span> anos, 
+                <span id="months2"></span> meses, 
+                <span id="days2"></span> dias, 
+                <span id="hours2"></span> horas, 
+                <span id="minutes2"></span> minutos, 
+                <span id="seconds2"></span> segundos.
+            </div>
+        </div>
+        </div>
         </div>
         
         <!-- Container para as borboletas -->
         <div id="butterfly-container" class="absolute top-0 left-0 w-full h-full overflow-hidden"></div>
-    </section>
     
     <script src="JS/menu-mobile.js"></script>
     <script src="JS/cursor.js"></script>
@@ -131,5 +163,7 @@
     <script src="JS/nav.js"></script>
     <script src="JS/contador1.js"></script>
     <script src="JS/borboleta.js"></script>
+    <script src="JS/contador2.js"></script>
+    <script src="JS/carrossel2.js"></script>
 </body>
 </html>
