@@ -12,6 +12,28 @@ body{
     background-repeat: no-repeat;
 }
 
+.bg-campo{
+    background-image: url(imgs/campo.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#cabeca {
+    z-index: 1000 !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: all 0.3s ease;
+    padding: 2px 0; /* Reduzir o padding vertical para diminuir a altura */
+}
+
+#cabeca .container {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
 .cursor {
     display: inline-block;
     width: 3px;
@@ -129,19 +151,20 @@ nav .nav-link {
 }
 
 nav .nav-link::after {
-    content: " ";
-    width: 0; /* Começa com largura 0 */
-    height: 4px;
+    content: "";
+    width: 0;
+    height: 3px; /* Linha um pouco mais fina */
     background-color: transparent;
     position: absolute;
-    bottom: 0; /* Ajusta a posição para ficar colado na base da letra */
-    left: 12px; /* Começa na posição inicial */
-    transition: width 0.5s ease-in-out, background-color 0.5s ease-in-out; /* Transição para a largura e cor */
+    bottom: -5px; /* Posição abaixo do texto */
+    left: 15px; /* Alinhamento com o texto */
+    transition: width 0.3s ease, background-color 0.3s ease;
+    border-radius: 2px;
 }
 
-nav .nav-link:hover::after {
-    background-color: var(--line-color);
-    width: 100%; /* A linha se expande para 100% da largura */
+nav .nav-link.active-link::after {
+    width: calc(100% - 30px);
+    background-color: #F4D03F;
 }
 
 nav .nav-link:hover {
@@ -224,9 +247,253 @@ nav a img {
     z-index: 10;
 }
 
+.girassol {
+    position: fixed;
+    z-index: 99;
+    pointer-events: none;
+    animation: balanco 5s ease-in-out infinite alternate;
+}
+
+/* Animação de balanço lateral para os girassóis */
+@keyframes balanco {
+    0% {
+        transform: translateX(0) rotate(0deg);
+    }
+    50% {
+        transform: translateX(15px) rotate(10deg);
+    }
+    100% {
+        transform: translateX(-15px) rotate(-10deg);
+    }
+}
+
+/* Estilos para o carrossel de polaroids */
+.polaroid-carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+    height: 450px;
+    position: relative;
+    perspective: 1000px;
+    margin: 0 auto;
+}
+
+.polaroid {
+    background: white;
+    padding: 15px 15px 40px 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    width: 250px;
+    position: absolute;
+    border-radius: 3px;
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    opacity: 0;
+    transform-origin: center center;
+}
+
+.polaroid.active {
+    opacity: 1;
+    z-index: 10;
+}
+
+.polaroid.prev, .polaroid.next {
+    opacity: 0.6;
+    z-index: 5;
+}
+
+.polaroid.prev {
+    transform: translateX(-200px) scale(0.8) rotate(-15deg) !important;
+}
+
+.polaroid.next {
+    transform: translateX(200px) scale(0.8) rotate(15deg) !important;
+}
+
+.polaroid img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 2px;
+}
+
+.polaroid-caption {
+    text-align: center;
+    margin-top: 15px;
+    font-family: 'Pacifico', cursive;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.polaroid-controls {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.polaroid-btn {
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    color: #333;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.polaroid-btn:hover {
+    background: white;
+    transform: scale(1.1);
+}
+
+/* Animação de entrada para as polaroids */
+@keyframes polaroidFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(50px) rotate(0deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) rotate(var(--rotate-angle));
+    }
+}
+
+.polaroid {
+    --rotate-angle: 0deg;
+    animation: polaroidFadeIn 1s forwards;
+    animation-delay: calc(var(--index) * 0.2s);
+}
+
+/* Melhorar a visibilidade das polaroids em fundos claros */
+.polaroid {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3), 0 0 0 1px rgba(0,0,0,0.1);
+}
+
+/* Melhorar a experiência de toque */
+.polaroid-btn {
+    -webkit-tap-highlight-color: transparent;
+}
+
+#fourt-section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+#fourt-section .girassol {
+    position: absolute;
+    z-index: 5;
+    pointer-events: none;
+}
+
+#fourt-section .girassol {
+    pointer-events: none;
+    z-index: 1;
+}
+
+.polaroid-carousel, .polaroid-controls {
+    position: relative;
+    z-index: 2;
+}
+
+.polabai{
+    margin-top: 50px;
+}
+
+.mobile-menu-container {
+    width: auto;
+    max-width: 80%;
+}
+
+#mobile-menu {
+    background-color: rgba(12, 20, 69, 0.95); /* Cor base do site com transparência */
+    border: 2px solid rgba(244, 208, 63, 0.5); /* Borda com cor de girassol */
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transform-origin: top right;
+    transform: scale(0.95);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+#mobile-menu.active {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Ajuste para o botão do menu hamburguer */
+#menu-button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+#menu-button:hover, #menu-button.active {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#menu-button {
+    display: none !important; /* Esconder por padrão */
+}
+
+/* Estilo para o logo */
+.logoImg {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.logoImg:hover {
+    transform: scale(1.1) rotate(15deg);
+}
+
+/* Ajuste para links do menu mobile */
+#mobile-menu a {
+    display: block;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+}
+
+#mobile-menu a:hover, #mobile-menu a:active {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Adaptação de cores para diferentes seções */
+body.in-section-1 #mobile-menu {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+body.in-section-2 #mobile-menu {
+    background-color: rgba(12, 20, 69, 0.95);
+}
+
+body.in-section-3 #mobile-menu {
+    background-color: rgba(87, 142, 167, 0.95);
+}
+
+body.in-section-4 #mobile-menu {
+    background-color: rgba(76, 116, 48, 0.95);
+}
+
 @media (max-width: 768px) {
     .bg-noite {
         background-image: url('imgs/Noite-estrelada-cell.png');
+    }
+
+    .bg-campo{
+        background-image: url(imgs/campo-cell.jpeg);
     }
 
     .bg-nav{
@@ -295,5 +562,83 @@ nav a img {
         width: 90px; /* Aumentando o tamanho da borboleta em dispositivos móveis */
         top: -45px; /* Ajustando a posição vertical para compensar o tamanho maior */
         right: -30px; /* Ajustando a posição horizontal */
+    }
+
+    .girassol {
+        /* Girassóis um pouco menores em dispositivos móveis */
+        max-width: 40px;
+    }
+
+    .polaroid-carousel {
+        height: 350px;
+    }
+
+    .polaroid {
+        width: 200px;
+        padding: 10px 10px 30px 10px;
+    }
+
+    .polaroid.prev {
+        transform: translateX(-120px) scale(0.8) rotate(-15deg) !important;
+    }
+    
+    .polaroid.next {
+        transform: translateX(120px) scale(0.8) rotate(15deg) !important;
+    }
+
+    .polaroid img {
+        height: 160px;
+    }
+
+    .polaroid-caption {
+        font-size: 0.9rem;
+        margin-top: 10px;
+    }
+
+    .polaroid-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+
+    .polabai{
+        margin-top: 50px;
+    }
+
+    #fourt-section {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+    
+    #fourt-section h2 {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    #menu-button {
+        display: flex !important; /* Usar flex para centralizar o ícone */
+    }
+    
+    /* Garantir que o menu desktop fique escondido em mobile */
+    #menu {
+        display: none !important;
+    }
+}
+
+@media (hover: none) {
+    .polaroid-btn:active {
+        background: white;
+        transform: scale(1.1);
+    }
+}
+
+/* Otimizar a animação para dispositivos de baixo desempenho */
+@media (prefers-reduced-motion: reduce) {
+    .polaroid {
+        animation-duration: 0.5s;
+    }
+    
+    .polaroid.prev, .polaroid.next, .polaroid.active {
+        transition: all 0.5s ease;
     }
 }
