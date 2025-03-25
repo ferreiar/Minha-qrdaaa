@@ -179,37 +179,29 @@
             <span class="FunnelDi">Nossos momentos em <span class="Pacifico text-[#F4D03F]">polaroids</span></span>
         </h2>
         
-        <div class="polaroid-carousel">
-            <div class="polaroid" style="transform: rotate(-8deg);">
-                <img src="imgs/Primeiro dia pt1.jpeg" alt="Momento 1">
-                <div class="polaroid-caption">Nosso primeiro dia</div>
-            </div>
-            
-            <div class="polaroid" style="transform: rotate(5deg) translateY(20px);">
-                <img src="imgs/Primeiro dia pt2.jpeg" alt="Momento 2">
-                <div class="polaroid-caption">Sorrisos sinceros</div>
-            </div>
-            
-            <div class="polaroid" style="transform: rotate(-3deg) translateY(-15px);">
-                <img src="imgs/Primeiro dia pt3.jpeg" alt="Momento 3">
-                <div class="polaroid-caption">Momentos especiais</div>
-            </div>
-            
-            <div class="polaroid" style="transform: rotate(10deg) translateY(10px);">
-                <img src="imgs/Segundo dia pt 1.jpeg" alt="Momento 4">
-                <div class="polaroid-caption">Nosso segundo dia</div>
-            </div>
-            
-            <div class="polaroid" style="transform: rotate(-12deg) translateY(-5px);">
-                <img src="imgs/Primeira vez na casa dela pt1.jpeg" alt="Momento 5">
-                <div class="polaroid-caption">Na sua casa</div>
-            </div>
-        </div>
-        
-        <div class="polaroid-controls">
-            <button id="prev-polaroid" class="polaroid-btn">❮</button>
-            <button id="next-polaroid" class="polaroid-btn">❯</button>
-        </div>
+       <!-- Carrossel de Polaroids -->
+<div class="polaroid-carousel">
+    <!-- Polaroids serão adicionadas aqui -->
+    <div class="polaroid" style="--index: 0;">
+        <img src="imgs/Primeira vez dela na minha casa pt1.jpeg" alt="Polaroid 1">
+        <div class="polaroid-caption">Legenda 1</div>
+    </div>
+    <div class="polaroid" style="--index: 1;">
+        <img src="imgs/Primeira vez dela na minha casa pt2.jpeg" alt="Polaroid 2">
+        <div class="polaroid-caption">Legenda 2</div>
+    </div>
+    <div class="polaroid" style="--index: 2;">
+        <img src="imgs/Oitava vez saindo pt1.jpeg" alt="Polaroid 3">
+        <div class="polaroid-caption">Legenda 3</div>
+    </div>
+    <!-- Adicione mais polaroids conforme necessário -->
+</div>
+
+<!-- Controles do carrossel -->
+<div class="polaroid-controls">
+    <button class="polaroid-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+    <button class="polaroid-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+</div>
     </section>
     <script src="JS/menu-mobile.js"></script>
     <script src="JS/cursor.js"></script>
