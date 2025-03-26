@@ -5,68 +5,75 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentIndex = 0;
     let isAnimating = false;
     
-    // Detectar se é um dispositivo iOS
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    
     // Inicializar o carrossel
     function initCarousel() {
         if (polaroids.length === 0) return;
         
-        // Definir classes iniciais
+        // Esconder todas as polaroids inicialmente
+        polaroids.forEach(polaroid => {
+            polaroid.style.display = 'none';
+        });
+        
+        // Mostrar apenas as três polaroids iniciais (prev, active, next)
         updatePolaroids();
-        
-        // Adicionar índices para animação
-        polaroids.forEach((polaroid, index) => {
-            polaroid.style.setProperty('--index', index);
-            
-            // Definir ângulos de rotação aleatórios para cada polaroid
-            const randomAngle = Math.random() * 10 - 5; // Entre -5 e 5 graus
-            polaroid.style.setProperty('--rotate-angle', `${randomAngle}deg`);
-        });
     }
     
-    // Atualizar as classes das polaroids
+    // Atualizar as polaroids visíveis
     function updatePolaroids() {
-        // Primeiro, remover todas as classes
-        polaroids.forEach((polaroid) => {
+        // Esconder todas as polaroids
+        polaroids.forEach(polaroid => {
+            polaroid.style.display = 'none';
             polaroid.classList.remove('active', 'prev', 'next');
-            polaroid.style.zIndex = "1"; // Reset z-index
         });
         
-        // Depois, adicionar as classes na ordem correta
-        const prevIndex = getPrevIndex();
-        const nextIndex = getNextIndex();
+        // Calcular índices
+        const prevIndex = (currentIndex - 1 + polaroids.length) % polaroids.length;
+        const nextIndex = (currentIndex + 1) % polaroids.length;
         
-        // Primeiro, definir next (menor z-index)
-        if (polaroids[nextIndex]) {
-            polaroids[nextIndex].classList.add('next');
-            polaroids[nextIndex].style.zIndex = isIOS ? "5" : "5";
-        }
-        
-        // Depois, definir prev (z-index intermediário)
+        // Configurar polaroid anterior
         if (polaroids[prevIndex]) {
-            polaroids[prevIndex].classList.add('prev');
-            polaroids[prevIndex].style.zIndex = isIOS ? "6" : "5"; // Maior z-index para iOS
+            const prevPolaroid = polaroids[prevIndex];
+            prevPolaroid.style.display = 'block';
+            prevPolaroid.classList.add('prev');
+            prevPolaroid.style.transform = 'translateX(-200px) scale(0.8) rotate(-15deg)';
+            prevPolaroid.style.opacity = '0.6';
+            prevPolaroid.style.zIndex = '5';
+            prevPolaroid.style.position = 'absolute';
+            prevPolaroid.style.left = '50%';
+            prevPolaroid.style.top = '50%';
+            prevPolaroid.style.marginLeft = '-125px'; // Metade da largura
+            prevPolaroid.style.marginTop = '-150px'; // Metade da altura aproximada
         }
         
-        // Por último, definir active (para ficar por cima)
+        // Configurar polaroid ativa (central)
         if (polaroids[currentIndex]) {
-            polaroids[currentIndex].classList.add('active');
-            polaroids[currentIndex].style.zIndex = "10";
+            const activePolaroid = polaroids[currentIndex];
+            activePolaroid.style.display = 'block';
+            activePolaroid.classList.add('active');
+            activePolaroid.style.transform = 'translateX(0) scale(1) rotate(0deg)';
+            activePolaroid.style.opacity = '1';
+            activePolaroid.style.zIndex = '10';
+            activePolaroid.style.position = 'absolute';
+            activePolaroid.style.left = '50%';
+            activePolaroid.style.top = '50%';
+            activePolaroid.style.marginLeft = '-125px'; // Metade da largura
+            activePolaroid.style.marginTop = '-150px'; // Metade da altura aproximada
         }
         
-        // Forçar um reflow para garantir que as mudanças sejam aplicadas
-        void document.querySelector('.polaroid-carousel').offsetWidth;
-    }
-    
-    // Obter o índice anterior
-    function getPrevIndex() {
-        return (currentIndex - 1 + polaroids.length) % polaroids.length;
-    }
-    
-    // Obter o próximo índice
-    function getNextIndex() {
-        return (currentIndex + 1) % polaroids.length;
+        // Configurar próxima polaroid
+        if (polaroids[nextIndex]) {
+            const nextPolaroid = polaroids[nextIndex];
+            nextPolaroid.style.display = 'block';
+            nextPolaroid.classList.add('next');
+            nextPolaroid.style.transform = 'translateX(200px) scale(0.8) rotate(15deg)';
+            nextPolaroid.style.opacity = '0.6';
+            nextPolaroid.style.zIndex = '5';
+            nextPolaroid.style.position = 'absolute';
+            nextPolaroid.style.left = '50%';
+            nextPolaroid.style.top = '50%';
+            nextPolaroid.style.marginLeft = '-125px'; // Metade da largura
+            nextPolaroid.style.marginTop = '-150px'; // Metade da altura aproximada
+        }
     }
     
     // Ir para a polaroid anterior
@@ -74,13 +81,13 @@ document.addEventListener('DOMContentLoaded', function() {
         if (isAnimating || polaroids.length <= 1) return;
         
         isAnimating = true;
-        currentIndex = getPrevIndex();
+        currentIndex = (currentIndex - 1 + polaroids.length) % polaroids.length;
         updatePolaroids();
         
         // Permitir nova animação após um tempo
         setTimeout(() => {
             isAnimating = false;
-        }, 800);
+        }, 500);
     }
     
     // Ir para a próxima polaroid
@@ -88,35 +95,24 @@ document.addEventListener('DOMContentLoaded', function() {
         if (isAnimating || polaroids.length <= 1) return;
         
         isAnimating = true;
-        currentIndex = getNextIndex();
+        currentIndex = (currentIndex + 1) % polaroids.length;
         updatePolaroids();
         
         // Permitir nova animação após um tempo
         setTimeout(() => {
             isAnimating = false;
-        }, 800);
+        }, 500);
     }
     
     // Adicionar event listeners aos botões
     if (prevBtn) {
-        prevBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            goToPrev();
-        });
+        prevBtn.addEventListener('click', goToPrev);
     }
     
     if (nextBtn) {
-        nextBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            goToNext();
-        });
+        nextBtn.addEventListener('click', goToNext);
     }
     
     // Inicializar o carrossel
     initCarousel();
-    
-    // Forçar uma atualização após um pequeno atraso para garantir que tudo seja renderizado corretamente
-    setTimeout(() => {
-        updatePolaroids();
-    }, 100);
 });

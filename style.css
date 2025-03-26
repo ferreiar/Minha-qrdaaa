@@ -269,16 +269,12 @@ nav a img {
 
 /* Estilos para o carrossel de polaroids */
 .polaroid-carousel {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
     width: 100%;
     max-width: 1000px;
     height: 450px;
-    position: relative;
-    perspective: 1000px;
     margin: 0 auto;
-    overflow: visible;
+    perspective: 1000px;
 }
 
 .polaroid {
@@ -286,13 +282,9 @@ nav a img {
     padding: 15px 15px 40px 15px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     width: 250px;
-    position: absolute;
     border-radius: 3px;
-    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    opacity: 0;
-    transform-origin: center center;
-    transform: translateX(0) scale(0) rotate(0deg);
-    z-index: 1;
+    transition: all 0.5s ease;
+    display: none; /* Inicialmente escondido */
 }
 
 .polaroid.active {
@@ -578,8 +570,6 @@ body.in-section-4 #mobile-menu {
 
     .polaroid-carousel {
         height: 350px;
-        width: 90%; /* Reduzir a largura para caber melhor */
-        max-width: 350px;
     }
 
     .polaroid {
@@ -594,12 +584,10 @@ body.in-section-4 #mobile-menu {
 
     .polaroid.prev {
         transform: translateX(-120px) scale(0.8) rotate(-15deg) !important;
-        left: 10px;
     }
     
     .polaroid.next {
         transform: translateX(120px) scale(0.8) rotate(15deg) !important;
-        right: 10px;
     }
 
     .polaroid img {
