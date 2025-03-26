@@ -3,8 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
     let currentIndex = 0;
-    let isAnimating = false; // Flag para evitar cliques durante a animação
-    let autoplayInterval = null;
+    let isAnimating = false;
     
     // Inicializar o carrossel
     function initCarousel() {
@@ -25,17 +24,32 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Atualizar as classes das polaroids
     function updatePolaroids() {
-        polaroids.forEach((polaroid, index) => {
+        // Primeiro, remover todas as classes
+        polaroids.forEach((polaroid) => {
             polaroid.classList.remove('active', 'prev', 'next');
-            
-            if (index === currentIndex) {
-                polaroid.classList.add('active');
-            } else if (index === getPrevIndex()) {
-                polaroid.classList.add('prev');
-            } else if (index === getNextIndex()) {
-                polaroid.classList.add('next');
-            }
+            polaroid.style.zIndex = "1"; // Reset z-index
         });
+        
+        // Depois, adicionar as classes na ordem correta
+        const prevIndex = getPrevIndex();
+        const nextIndex = getNextIndex();
+        
+        // Primeiro, definir prev e next
+        if (polaroids[prevIndex]) {
+            polaroids[prevIndex].classList.add('prev');
+            polaroids[prevIndex].style.zIndex = "5";
+        }
+        
+        if (polaroids[nextIndex]) {
+            polaroids[nextIndex].classList.add('next');
+            polaroids[nextIndex].style.zIndex = "5";
+        }
+        
+        // Por último, definir active (para ficar por cima)
+        if (polaroids[currentIndex]) {
+            polaroids[currentIndex].classList.add('active');
+            polaroids[currentIndex].style.zIndex = "10";
+        }
     }
     
     // Obter o índice anterior
@@ -59,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Permitir nova animação após um tempo
         setTimeout(() => {
             isAnimating = false;
-        }, 800); // Tempo um pouco maior que a duração da transição
+        }, 800);
     }
     
     // Ir para a próxima polaroid
@@ -73,14 +87,13 @@ document.addEventListener('DOMContentLoaded', function() {
         // Permitir nova animação após um tempo
         setTimeout(() => {
             isAnimating = false;
-        }, 800); // Tempo um pouco maior que a duração da transição
+        }, 800);
     }
     
     // Adicionar event listeners aos botões
     if (prevBtn) {
         prevBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            stopAutoplay(); // Parar autoplay ao clicar
             goToPrev();
         });
     }
@@ -88,73 +101,15 @@ document.addEventListener('DOMContentLoaded', function() {
     if (nextBtn) {
         nextBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            stopAutoplay(); // Parar autoplay ao clicar
             goToNext();
         });
-    }
-    
-    // Adicionar suporte para swipe em dispositivos móveis
-    let touchStartX = 0;
-    let touchEndX = 0;
-    
-    const polaroidCarousel = document.querySelector('.polaroid-carousel');
-    if (polaroidCarousel) {
-        polaroidCarousel.addEventListener('touchstart', function(e) {
-            touchStartX = e.changedTouches[0].screenX;
-        }, {passive: true});
-        
-        polaroidCarousel.addEventListener('touchend', function(e) {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        }, {passive: true});
-    }
-    
-    function handleSwipe() {
-        const swipeThreshold = 50; // Mínimo de pixels para considerar um swipe
-        
-        if (touchEndX < touchStartX - swipeThreshold) {
-            // Swipe para a esquerda - próxima polaroid
-            stopAutoplay();
-            goToNext();
-        } else if (touchEndX > touchStartX + swipeThreshold) {
-            // Swipe para a direita - polaroid anterior
-            stopAutoplay();
-            goToPrev();
-        }
-    }
-    
-    // Funções para autoplay
-    function startAutoplay() {
-        if (autoplayInterval) return;
-        
-        autoplayInterval = setInterval(() => {
-            goToNext();
-        }, 5000); // Mudar a cada 5 segundos
-    }
-    
-    function stopAutoplay() {
-        if (autoplayInterval) {
-            clearInterval(autoplayInterval);
-            autoplayInterval = null;
-        }
     }
     
     // Inicializar o carrossel
     initCarousel();
     
-    // Iniciar autoplay (opcional - remova se não quiser autoplay)
-    // startAutoplay();
-    
-    // Parar autoplay quando a página não estiver visível
-    document.addEventListener('visibilitychange', function() {
-        if (document.hidden) {
-            stopAutoplay();
-        } else {
-            // startAutoplay(); // Descomente se quiser reiniciar o autoplay quando a página ficar visível novamente
-        }
-    });
-    
-    // Adicionar event listeners para pausar o autoplay ao interagir com o carrossel
-    polaroidCarousel?.addEventListener('mouseenter', stopAutoplay);
-    // polaroidCarousel?.addEventListener('mouseleave', startAutoplay); // Descomente se quiser reiniciar o autoplay ao sair do mouse
+    // Forçar uma atualização após um pequeno atraso para garantir que tudo seja renderizado corretamente
+    setTimeout(() => {
+        updatePolaroids();
+    }, 100);
 });

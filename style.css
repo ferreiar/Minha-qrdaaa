@@ -291,7 +291,8 @@ nav a img {
     transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     opacity: 0;
     transform-origin: center center;
-    transform: translateX(0) scale(0) rotate(0deg) !important;
+    transform: translateX(0) scale(0) rotate(0deg);
+    z-index: 1;
 }
 
 .polaroid.active {
@@ -303,18 +304,15 @@ nav a img {
 .polaroid.prev, .polaroid.next {
     opacity: 0.6;
     z-index: 5;
+    pointer-events: none;
 }
 
 .polaroid.prev {
-    opacity: 0.6;
-    z-index: 5;
     transform: translateX(-200px) scale(0.8) rotate(-15deg) !important;
     left: 0;
 }
 
 .polaroid.next {
-    opacity: 0.6;
-    z-index: 5;
     transform: translateX(200px) scale(0.8) rotate(15deg) !important;
     right: 0;
 }
@@ -587,6 +585,11 @@ body.in-section-4 #mobile-menu {
     .polaroid {
         width: 180px;
         padding: 10px 10px 30px 10px;
+    }
+
+    .polaroid.prev, .polaroid.next {
+        z-index: 5; /* Mesmo z-index para ambos */
+        opacity: 0.6;
     }
 
     .polaroid.prev {
