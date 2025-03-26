@@ -27,15 +27,40 @@ document.addEventListener('DOMContentLoaded', function() {
                     polaroid.style.transform += ' translateZ(0)';
                 }
                 
-                // Ajustar z-index para evitar problemas de sobreposição
+                // Problema específico: polaroid do lado esquerdo desaparecendo
                 if (polaroid.classList.contains('prev')) {
+                    // Garantir que a polaroid anterior seja sempre visível
+                    polaroid.style.display = 'block';
+                    polaroid.style.opacity = '0.6';
                     polaroid.style.zIndex = '6';
+                    // Forçar a posição correta
+                    polaroid.style.transform = 'translateX(-200px) scale(0.8) rotate(-15deg) translateZ(0)';
+                    polaroid.style.position = 'absolute';
+                    polaroid.style.left = '50%';
+                    polaroid.style.top = '50%';
+                    polaroid.style.marginLeft = '-125px';
+                    polaroid.style.marginTop = '-150px';
                 } else if (polaroid.classList.contains('active')) {
                     polaroid.style.zIndex = '10';
+                    polaroid.style.display = 'block';
+                    polaroid.style.opacity = '1';
                 } else if (polaroid.classList.contains('next')) {
                     polaroid.style.zIndex = '6';
+                    polaroid.style.display = 'block';
+                    polaroid.style.opacity = '0.6';
                 }
             });
+        }
+        
+        // Sobrescrever a função updatePolaroids original para iOS
+        if (window.updatePolaroids) {
+            const originalUpdatePolaroids = window.updatePolaroids;
+            window.updatePolaroids = function() {
+                originalUpdatePolaroids();
+                if (isIOS) {
+                    setTimeout(applyIOSFixes, 10);
+                }
+            };
         }
         
         // Aplicar correções iniciais
@@ -75,5 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Aplicar novamente após um tempo para garantir que tudo esteja carregado
         setTimeout(applyIOSFixes, 500);
+        // E aplicar periodicamente para garantir consistência
+        setInterval(applyIOSFixes, 1000);
     }
 });
