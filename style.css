@@ -658,3 +658,46 @@ body.in-section-4 #mobile-menu {
         transition: all 0.5s ease;
     }
 }
+
+
+/* Correções específicas para iOS */
+@supports (-webkit-touch-callout: none) {
+    .polaroid-carousel {
+        transform-style: preserve-3d;
+    }
+    
+    .polaroid {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
+    
+    .polaroid.prev {
+        z-index: 6 !important; /* Forçar z-index maior para a polaroid da esquerda no iOS */
+    }
+    
+    .polaroid.active {
+        z-index: 10 !important; /* Garantir que a polaroid ativa tenha o maior z-index */
+    }
+    
+    .polaroid.next {
+        z-index: 5 !important;
+    }
+    
+    /* Ajuste na transformação para evitar problemas de renderização */
+    .polaroid.prev {
+        transform: translateX(-200px) translateZ(1px) scale(0.8) rotate(-15deg) !important;
+    }
+    
+    .polaroid.active {
+        transform: translateX(0) translateZ(2px) scale(1) rotate(0deg) !important;
+    }
+    
+    .polaroid.next {
+        transform: translateX(200px) translateZ(1px) scale(0.8) rotate(15deg) !important;
+    }
+}
+
+/* Classe adicional para iOS */
+.polaroid-carousel.ios-fix .polaroid.prev {
+    z-index: 6 !important;
+}

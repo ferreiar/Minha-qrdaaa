@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentIndex = 0;
     let isAnimating = false;
     
+    // Detectar se é um dispositivo iOS
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    
     // Inicializar o carrossel
     function initCarousel() {
         if (polaroids.length === 0) return;
@@ -34,15 +37,16 @@ document.addEventListener('DOMContentLoaded', function() {
         const prevIndex = getPrevIndex();
         const nextIndex = getNextIndex();
         
-        // Primeiro, definir prev e next
-        if (polaroids[prevIndex]) {
-            polaroids[prevIndex].classList.add('prev');
-            polaroids[prevIndex].style.zIndex = "5";
-        }
-        
+        // Primeiro, definir next (menor z-index)
         if (polaroids[nextIndex]) {
             polaroids[nextIndex].classList.add('next');
-            polaroids[nextIndex].style.zIndex = "5";
+            polaroids[nextIndex].style.zIndex = isIOS ? "5" : "5";
+        }
+        
+        // Depois, definir prev (z-index intermediário)
+        if (polaroids[prevIndex]) {
+            polaroids[prevIndex].classList.add('prev');
+            polaroids[prevIndex].style.zIndex = isIOS ? "6" : "5"; // Maior z-index para iOS
         }
         
         // Por último, definir active (para ficar por cima)
@@ -50,6 +54,9 @@ document.addEventListener('DOMContentLoaded', function() {
             polaroids[currentIndex].classList.add('active');
             polaroids[currentIndex].style.zIndex = "10";
         }
+        
+        // Forçar um reflow para garantir que as mudanças sejam aplicadas
+        void document.querySelector('.polaroid-carousel').offsetWidth;
     }
     
     // Obter o índice anterior
