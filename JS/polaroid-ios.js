@@ -3,104 +3,141 @@ document.addEventListener('DOMContentLoaded', function() {
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
     
     if (isIOS) {
+        console.log("Dispositivo iOS detectado - aplicando correções específicas");
+        
         // Selecionar elementos
         const polaroidCarousel = document.querySelector('.polaroid-carousel');
         const polaroids = document.querySelectorAll('.polaroid');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
         
         // Adicionar classe específica para iOS
         if (polaroidCarousel) {
             polaroidCarousel.classList.add('ios-fix');
         }
         
-        // Função para aplicar correções específicas para iOS
-        function applyIOSFixes() {
+        // Substituir completamente a lógica do carrossel para iOS
+        let currentIndex = 0;
+        let isAnimating = false;
+        
+        // Função para atualizar as polaroids no iOS
+        function updateIOSPolaroids() {
+            // Esconder todas as polaroids primeiro
             polaroids.forEach(polaroid => {
-                // Forçar hardware acceleration
-                polaroid.style.webkitBackfaceVisibility = 'hidden';
-                polaroid.style.backfaceVisibility = 'hidden';
-                polaroid.style.webkitPerspective = '1000';
-                polaroid.style.perspective = '1000';
-                
-                // Garantir que as transformações funcionem corretamente no iOS
-                if (polaroid.style.transform) {
-                    polaroid.style.webkitTransform = polaroid.style.transform + ' translateZ(0)';
-                    polaroid.style.transform += ' translateZ(0)';
-                }
-                
-                // Problema específico: polaroid do lado esquerdo desaparecendo
-                if (polaroid.classList.contains('prev')) {
-                    // Garantir que a polaroid anterior seja sempre visível
-                    polaroid.style.display = 'block';
-                    polaroid.style.opacity = '0.6';
-                    polaroid.style.zIndex = '6';
-                    // Forçar a posição correta
-                    polaroid.style.transform = 'translateX(-200px) scale(0.8) rotate(-15deg) translateZ(0)';
-                    polaroid.style.position = 'absolute';
-                    polaroid.style.left = '50%';
-                    polaroid.style.top = '50%';
-                    polaroid.style.marginLeft = '-125px';
-                    polaroid.style.marginTop = '-150px';
-                } else if (polaroid.classList.contains('active')) {
-                    polaroid.style.zIndex = '10';
-                    polaroid.style.display = 'block';
-                    polaroid.style.opacity = '1';
-                } else if (polaroid.classList.contains('next')) {
-                    polaroid.style.zIndex = '6';
-                    polaroid.style.display = 'block';
-                    polaroid.style.opacity = '0.6';
-                }
+                polaroid.style.display = 'none';
+                polaroid.classList.remove('active', 'prev', 'next');
             });
+            
+            // Calcular índices
+            const prevIndex = (currentIndex - 1 + polaroids.length) % polaroids.length;
+            const nextIndex = (currentIndex + 1) % polaroids.length;
+            
+            // Configurar polaroid anterior (esquerda)
+            const prevPolaroid = polaroids[prevIndex];
+            if (prevPolaroid) {
+                prevPolaroid.style.display = 'block';
+                prevPolaroid.classList.add('prev');
+                prevPolaroid.style.position = 'absolute';
+                prevPolaroid.style.left = '50%';
+                prevPolaroid.style.top = '50%';
+                prevPolaroid.style.marginLeft = '-125px';
+                prevPolaroid.style.marginTop = '-150px';
+                prevPolaroid.style.transform = 'translateX(-200px) scale(0.8) rotate(-15deg)';
+                prevPolaroid.style.webkitTransform = 'translateX(-200px) scale(0.8) rotate(-15deg)';
+                prevPolaroid.style.opacity = '0.6';
+                prevPolaroid.style.zIndex = '6';
+                prevPolaroid.style.transition = 'none';
+                // Forçar repaint
+                void prevPolaroid.offsetWidth;
+                prevPolaroid.style.transition = 'all 0.3s ease-in-out';
+            }
+            
+            // Configurar polaroid ativa (central)
+            const activePolaroid = polaroids[currentIndex];
+            if (activePolaroid) {
+                activePolaroid.style.display = 'block';
+                activePolaroid.classList.add('active');
+                activePolaroid.style.position = 'absolute';
+                activePolaroid.style.left = '50%';
+                activePolaroid.style.top = '50%';
+                activePolaroid.style.marginLeft = '-125px';
+                activePolaroid.style.marginTop = '-150px';
+                activePolaroid.style.transform = 'translateX(0) scale(1) rotate(0deg)';
+                activePolaroid.style.webkitTransform = 'translateX(0) scale(1) rotate(0deg)';
+                activePolaroid.style.opacity = '1';
+                activePolaroid.style.zIndex = '10';
+                activePolaroid.style.transition = 'none';
+                // Forçar repaint
+                void activePolaroid.offsetWidth;
+                activePolaroid.style.transition = 'all 0.3s ease-in-out';
+            }
+            
+            // Configurar próxima polaroid (direita)
+            const nextPolaroid = polaroids[nextIndex];
+            if (nextPolaroid) {
+                nextPolaroid.style.display = 'block';
+                nextPolaroid.classList.add('next');
+                nextPolaroid.style.position = 'absolute';
+                nextPolaroid.style.left = '50%';
+                nextPolaroid.style.top = '50%';
+                nextPolaroid.style.marginLeft = '-125px';
+                nextPolaroid.style.marginTop = '-150px';
+                nextPolaroid.style.transform = 'translateX(200px) scale(0.8) rotate(15deg)';
+                nextPolaroid.style.webkitTransform = 'translateX(200px) scale(0.8) rotate(15deg)';
+                nextPolaroid.style.opacity = '0.6';
+                nextPolaroid.style.zIndex = '6';
+                nextPolaroid.style.transition = 'none';
+                // Forçar repaint
+                void nextPolaroid.offsetWidth;
+                nextPolaroid.style.transition = 'all 0.3s ease-in-out';
+            }
         }
         
-        // Sobrescrever a função updatePolaroids original para iOS
-        if (window.updatePolaroids) {
-            const originalUpdatePolaroids = window.updatePolaroids;
-            window.updatePolaroids = function() {
-                originalUpdatePolaroids();
-                if (isIOS) {
-                    setTimeout(applyIOSFixes, 10);
-                }
-            };
+        // Função para ir para a polaroid anterior
+        function goToPrev() {
+            if (isAnimating || polaroids.length <= 1) return;
+            
+            isAnimating = true;
+            currentIndex = (currentIndex - 1 + polaroids.length) % polaroids.length;
+            updateIOSPolaroids();
+            
+            setTimeout(() => {
+                isAnimating = false;
+            }, 300);
         }
         
-        // Aplicar correções iniciais
-        applyIOSFixes();
+        // Função para ir para a próxima polaroid
+        function goToNext() {
+            if (isAnimating || polaroids.length <= 1) return;
+            
+            isAnimating = true;
+            currentIndex = (currentIndex + 1) % polaroids.length;
+            updateIOSPolaroids();
+            
+            setTimeout(() => {
+                isAnimating = false;
+            }, 300);
+        }
         
-        // Observar mudanças nas classes das polaroids
-        const observer = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
-                if (mutation.attributeName === 'class' || 
-                    mutation.attributeName === 'style') {
-                    // Pequeno atraso para garantir que as mudanças de estilo sejam aplicadas
-                    setTimeout(applyIOSFixes, 10);
-                }
-            });
-        });
-        
-        // Observar todas as polaroids
-        polaroids.forEach(polaroid => {
-            observer.observe(polaroid, { attributes: true });
-        });
-        
-        // Adicionar listeners para os botões de navegação
-        const prevBtn = document.querySelector('.prev-btn');
-        const nextBtn = document.querySelector('.next-btn');
-        
+        // Substituir os event listeners dos botões
         if (prevBtn) {
-            prevBtn.addEventListener('click', function() {
-                setTimeout(applyIOSFixes, 50);
-            });
+            prevBtn.removeEventListener('click', window.goToPrev);
+            prevBtn.addEventListener('click', goToPrev);
         }
         
         if (nextBtn) {
-            nextBtn.addEventListener('click', function() {
-                setTimeout(applyIOSFixes, 50);
-            });
+            nextBtn.removeEventListener('click', window.goToNext);
+            nextBtn.addEventListener('click', goToNext);
         }
         
-        // Aplicar novamente após um tempo para garantir que tudo esteja carregado
-        setTimeout(applyIOSFixes, 500);
-        // E aplicar periodicamente para garantir consistência
-        setInterval(applyIOSFixes, 1000);
+        // Inicializar o carrossel para iOS
+        updateIOSPolaroids();
+        
+        // Sobrescrever as funções globais para iOS
+        window.updatePolaroids = updateIOSPolaroids;
+        window.goToPrev = goToPrev;
+        window.goToNext = goToNext;
+        
+        console.log("Correções para iOS aplicadas com sucesso");
     }
 });
