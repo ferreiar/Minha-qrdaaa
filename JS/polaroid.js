@@ -1,117 +1,159 @@
 document.addEventListener('DOMContentLoaded', function() {
+    console.log("Script de polaroid carregado");
+    
+    const polaroidItems = document.querySelectorAll('.polaroid-item');
     const polaroids = document.querySelectorAll('.polaroid');
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
+    const polaroidCarousel = document.querySelector('.polaroid-carousel');
+    
+    // Criar o elemento interno do carrossel se não existir
+    let carouselInner = document.querySelector('.polaroid-carousel-inner');
+    if (!carouselInner) {
+        carouselInner = document.createElement('div');
+        carouselInner.className = 'polaroid-carousel-inner';
+        
+        // Mover todas as polaroids para dentro do carouselInner
+        while (polaroidCarousel.firstChild) {
+            carouselInner.appendChild(polaroidCarousel.firstChild);
+        }
+        
+        polaroidCarousel.appendChild(carouselInner);
+    }
+    
     let currentIndex = 0;
     let isAnimating = false;
+    let autoplayInterval;
+    let rotationAngle = 0;
     
     // Inicializar o carrossel
     function initCarousel() {
-        if (polaroids.length === 0) return;
+        if (polaroidItems.length === 0) return;
         
-        // Esconder todas as polaroids inicialmente
-        polaroids.forEach(polaroid => {
-            polaroid.style.display = 'none';
-        });
+        // Posicionar as polaroids em círculo
+        positionPolaroidsInCircle();
         
-        // Mostrar apenas as três polaroids iniciais (prev, active, next)
-        updatePolaroids();
+        // Iniciar o autoplay
+        startAutoplay();
     }
     
-    // Atualizar as polaroids visíveis
-    function updatePolaroids() {
-        // Esconder todas as polaroids
-        polaroids.forEach(polaroid => {
-            polaroid.style.display = 'none';
-            polaroid.classList.remove('active', 'prev', 'next');
+    // Posicionar as polaroids em um círculo 3D
+    function positionPolaroidsInCircle() {
+        const totalItems = polaroidItems.length;
+        
+        // Aumentar o raio com base no número de itens para criar mais espaçamento
+        // Quanto mais itens, maior o raio para evitar sobreposição
+        const baseRadius = 1350; // Raio base aumentado para criar mais espaçamento
+        const radius = Math.max(baseRadius, totalItems * 20); // Escala o raio com o número de itens
+        
+        // Calcular o ângulo entre cada item
+        const angleStep = 360 / totalItems;
+        
+        polaroidItems.forEach((item, index) => {
+            const angle = angleStep * index;
+            const radian = angle * Math.PI / 180;
+            
+            // Posicionar cada item em um ponto do círculo
+            item.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
+            
+            // Contra-rotação para manter a polaroid sempre de frente
+            const polaroid = item.querySelector('.polaroid');
+            if (polaroid) {
+                polaroid.style.transform = `rotateY(${-angle}deg)`;
+            }
+            
+            // Definir o índice como atributo de dados para uso posterior
+            item.dataset.index = index;
         });
         
-        // Calcular índices
-        const prevIndex = (currentIndex - 1 + polaroids.length) % polaroids.length;
-        const nextIndex = (currentIndex + 1) % polaroids.length;
+        // Definir a polaroid ativa inicial
+        updateActivePolaroid();
+    }
+    
+    // Atualizar qual polaroid está ativa
+    function updateActivePolaroid() {
+        // Remover a classe ativa de todas as polaroids
+        polaroids.forEach(polaroid => {
+            polaroid.classList.remove('active');
+        });
         
-        // Configurar polaroid anterior
-        if (polaroids[prevIndex]) {
-            const prevPolaroid = polaroids[prevIndex];
-            prevPolaroid.style.display = 'block';
-            prevPolaroid.classList.add('prev');
-            prevPolaroid.style.transform = 'translateX(-200px) scale(0.8) rotate(-15deg)';
-            prevPolaroid.style.opacity = '0.6';
-            prevPolaroid.style.zIndex = '5';
-            prevPolaroid.style.position = 'absolute';
-            prevPolaroid.style.left = '50%';
-            prevPolaroid.style.top = '50%';
-            prevPolaroid.style.marginLeft = '-125px'; // Metade da largura
-            prevPolaroid.style.marginTop = '-150px'; // Metade da altura aproximada
-        }
-        
-        // Configurar polaroid ativa (central)
-        if (polaroids[currentIndex]) {
-            const activePolaroid = polaroids[currentIndex];
-            activePolaroid.style.display = 'block';
-            activePolaroid.classList.add('active');
-            activePolaroid.style.transform = 'translateX(0) scale(1) rotate(0deg)';
-            activePolaroid.style.opacity = '1';
-            activePolaroid.style.zIndex = '10';
-            activePolaroid.style.position = 'absolute';
-            activePolaroid.style.left = '50%';
-            activePolaroid.style.top = '50%';
-            activePolaroid.style.marginLeft = '-125px'; // Metade da largura
-            activePolaroid.style.marginTop = '-150px'; // Metade da altura aproximada
-        }
-        
-        // Configurar próxima polaroid
-        if (polaroids[nextIndex]) {
-            const nextPolaroid = polaroids[nextIndex];
-            nextPolaroid.style.display = 'block';
-            nextPolaroid.classList.add('next');
-            nextPolaroid.style.transform = 'translateX(200px) scale(0.8) rotate(15deg)';
-            nextPolaroid.style.opacity = '0.6';
-            nextPolaroid.style.zIndex = '5';
-            nextPolaroid.style.position = 'absolute';
-            nextPolaroid.style.left = '50%';
-            nextPolaroid.style.top = '50%';
-            nextPolaroid.style.marginLeft = '-125px'; // Metade da largura
-            nextPolaroid.style.marginTop = '-150px'; // Metade da altura aproximada
+        // Adicionar a classe ativa à polaroid atual
+        const activeItem = polaroidItems[currentIndex];
+        if (activeItem) {
+            const activePolaroid = activeItem.querySelector('.polaroid');
+            if (activePolaroid) {
+                activePolaroid.classList.add('active');
+            }
         }
     }
     
-    // Ir para a polaroid anterior
-    function goToPrev() {
-        if (isAnimating || polaroids.length <= 1) return;
+    // Girar o carrossel
+    function rotateCarousel(direction = 1) {
+        if (isAnimating) return;
         
         isAnimating = true;
-        currentIndex = (currentIndex - 1 + polaroids.length) % polaroids.length;
-        updatePolaroids();
         
-        // Permitir nova animação após um tempo
+        // Atualizar o índice atual
+        currentIndex = (currentIndex + direction + polaroidItems.length) % polaroidItems.length;
+        
+        // Atualizar o ângulo de rotação
+        rotationAngle -= direction * (360 / polaroidItems.length);
+        
+        // Aplicar a rotação ao carrossel
+        carouselInner.style.transform = `rotateY(${rotationAngle}deg)`;
+        
+        // Atualizar a polaroid ativa
+        updateActivePolaroid();
+        
+        // Permitir nova animação após o término da transição
         setTimeout(() => {
             isAnimating = false;
-        }, 500);
+        }, 1000);
     }
     
     // Ir para a próxima polaroid
     function goToNext() {
-        if (isAnimating || polaroids.length <= 1) return;
-        
-        isAnimating = true;
-        currentIndex = (currentIndex + 1) % polaroids.length;
-        updatePolaroids();
-        
-        // Permitir nova animação após um tempo
-        setTimeout(() => {
-            isAnimating = false;
-        }, 500);
+        rotateCarousel(1);
     }
     
-    // Adicionar event listeners aos botões
-    if (prevBtn) {
-        prevBtn.addEventListener('click', goToPrev);
+    // Ir para a polaroid anterior
+    function goToPrev() {
+        rotateCarousel(-1);
     }
     
-    if (nextBtn) {
-        nextBtn.addEventListener('click', goToNext);
+    // Iniciar o autoplay
+    function startAutoplay() {
+        // Limpar qualquer intervalo existente
+        if (autoplayInterval) {
+            clearInterval(autoplayInterval);
+        }
+        
+        // Definir novo intervalo para mudar a cada 3 segundos
+        autoplayInterval = setInterval(() => {
+            goToNext();
+        }, 3000);
     }
+    
+    // Parar o autoplay (caso necessário)
+    function stopAutoplay() {
+        if (autoplayInterval) {
+            clearInterval(autoplayInterval);
+            autoplayInterval = null;
+        }
+    }
+    
+    // Pausar o autoplay quando a página estiver em segundo plano
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            stopAutoplay();
+        } else {
+            startAutoplay();
+        }
+    });
+    
+    // Expor funções globalmente para possível uso externo
+    window.goToNext = goToNext;
+    window.goToPrev = goToPrev;
+    window.startAutoplay = startAutoplay;
+    window.stopAutoplay = stopAutoplay;
     
     // Inicializar o carrossel
     initCarousel();
