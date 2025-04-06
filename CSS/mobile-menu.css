@@ -1,0 +1,91 @@
+.mobile-menu-container {
+    width: auto;
+    max-width: 80%;
+}
+
+#mobile-menu {
+    background-color: rgba(12, 20, 69, 0.95); /* Cor base do site com transparência */
+    border: 2px solid rgba(244, 208, 63, 0.5); /* Borda com cor de girassol */
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transform-origin: top right;
+    transform: scale(0.95);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+#mobile-menu.active {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Ajuste para o botão do menu hamburguer */
+#menu-button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+#menu-button:hover, #menu-button.active {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#menu-button {
+    display: none !important; /* Esconder por padrão */
+}
+
+/* Estilo para o logo */
+.logoImg {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.logoImg:hover {
+    transform: scale(1.1) rotate(15deg);
+}
+
+/* Ajuste para links do menu mobile */
+#mobile-menu a {
+    display: block;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+}
+
+#mobile-menu a:hover, #mobile-menu a:active {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Adaptação de cores para diferentes seções */
+body.in-section-1 #mobile-menu {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+body.in-section-2 #mobile-menu {
+    background-color: rgba(12, 20, 69, 0.95);
+}
+
+body.in-section-3 #mobile-menu {
+    background-color: rgba(87, 142, 167, 0.95);
+}
+
+body.in-section-4 #mobile-menu {
+    background-color: rgba(76, 116, 48, 0.95);
+}
+
+@media (max-width: 768px) {
+    #menu-button {
+        display: flex !important; /* Usar flex para centralizar o ícone */
+    }
+    
+    /* Garantir que o menu desktop fique escondido em mobile */
+    #menu {
+        display: none !important;
+    }
+}

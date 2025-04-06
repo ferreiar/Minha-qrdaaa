@@ -1,0 +1,42 @@
+.girassol {
+    position: fixed;
+    z-index: 99;
+    pointer-events: none;
+    animation: balanco 5s ease-in-out infinite alternate;
+}
+
+/* Animação de balanço lateral para os girassóis */
+@keyframes balanco {
+    0% {
+        transform: translateX(0) rotate(0deg);
+    }
+    50% {
+        transform: translateX(15px) rotate(10deg);
+    }
+    100% {
+        transform: translateX(-15px) rotate(-10deg);
+    }
+}
+
+#fourt-section {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+#fourt-section .girassol {
+    position: absolute;
+    z-index: 5;
+    pointer-events: none;
+}
+
+#fourt-section .girassol {
+    pointer-events: none;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .girassol {
+        /* Girassóis um pouco menores em dispositivos móveis */
+        max-width: 40px;
+    }
+}

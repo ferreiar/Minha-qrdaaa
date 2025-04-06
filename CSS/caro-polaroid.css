@@ -1,0 +1,233 @@
+.polaroid-carousel {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    height: 450px;
+    margin: 0 auto;
+    perspective: 1000px;
+}
+
+.polaroid {
+    background: white;
+    padding: 15px 15px 40px 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    width: 250px;
+    border-radius: 3px;
+    transition: all 0.5s ease;
+    display: none; /* Inicialmente escondido */
+}
+
+.polaroid.active {
+    opacity: 1;
+    z-index: 10;
+    transform: translateX(0) scale(1) rotate(0deg) !important;
+}
+
+.polaroid.prev, .polaroid.next {
+    opacity: 0.6;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.polaroid.prev {
+    transform: translateX(-200px) scale(0.8) rotate(-15deg) !important;
+    left: 0;
+}
+
+.polaroid.next {
+    transform: translateX(200px) scale(0.8) rotate(15deg) !important;
+    right: 0;
+}
+
+.polaroid img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 2px;
+}
+
+.polaroid-caption {
+    text-align: center;
+    margin-top: 15px;
+    font-family: 'Pacifico', cursive;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.polaroid-controls {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.polaroid-btn {
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    color: #333;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.polaroid-btn:hover {
+    background: white;
+    transform: scale(1.1);
+}
+
+/* Animação de entrada para as polaroids */
+@keyframes polaroidFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(50px) rotate(0deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) rotate(var(--rotate-angle));
+    }
+}
+
+.polaroid {
+    --rotate-angle: 0deg;
+    animation: polaroidFadeIn 1s forwards;
+    animation-delay: calc(var(--index) * 0.2s);
+}
+
+/* Melhorar a visibilidade das polaroids em fundos claros */
+.polaroid {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3), 0 0 0 1px rgba(0,0,0,0.1);
+}
+
+/* Melhorar a experiência de toque */
+.polaroid-btn {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.polaroid-carousel, .polaroid-controls {
+    position: relative;
+    z-index: 2;
+}
+
+@media (max-width: 768px) {
+    .polalad{
+        left: 30px !important; 
+    }
+
+    .polaroid-carousel {
+        height: 350px;
+    }
+
+    .polaroid {
+        width: 180px;
+        padding: 10px 10px 30px 10px;
+    }
+
+    .polaroid.prev, .polaroid.next {
+        z-index: 5; /* Mesmo z-index para ambos */
+        opacity: 0.6;
+    }
+
+    .polaroid.prev {
+        transform: translateX(-120px) scale(0.8) rotate(-15deg) !important;
+    }
+    
+    .polaroid.next {
+        transform: translateX(120px) scale(0.8) rotate(15deg) !important;
+    }
+
+    .polaroid img {
+        height: 150px;
+    }
+
+    .polaroid-caption {
+        font-size: 0.9rem;
+        margin-top: 10px;
+    }
+
+    .polaroid-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+
+    .polabai{
+        margin-top: 50px;
+    }
+
+    #fourt-section {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+    
+    #fourt-section h2 {
+        font-size: 1.75rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (hover: none) {
+    .polaroid-btn:active {
+        background: white;
+        transform: scale(1.1);
+    }
+}
+
+/* Otimizar a animação para dispositivos de baixo desempenho */
+@media (prefers-reduced-motion: reduce) {
+    .polaroid {
+        animation-duration: 0.5s;
+    }
+    
+    .polaroid.prev, .polaroid.next, .polaroid.active {
+        transition: all 0.5s ease;
+    }
+}
+
+/* Correções específicas para iOS */
+@supports (-webkit-touch-callout: none) {
+    .polaroid-carousel {
+        transform-style: preserve-3d;
+    }
+    
+    .polaroid {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
+    
+    .polaroid.prev {
+        z-index: 6 !important; /* Forçar z-index maior para a polaroid da esquerda no iOS */
+    }
+    
+    .polaroid.active {
+        z-index: 10 !important; /* Garantir que a polaroid ativa tenha o maior z-index */
+    }
+    
+    .polaroid.next {
+        z-index: 5 !important;
+    }
+    
+    /* Ajuste na transformação para evitar problemas de renderização */
+    .polaroid.prev {
+        transform: translateX(-200px) translateZ(1px) scale(0.8) rotate(-15deg) !important;
+    }
+    
+    .polaroid.active {
+        transform: translateX(0) translateZ(2px) scale(1) rotate(0deg) !important;
+    }
+    
+    .polaroid.next {
+        transform: translateX(200px) translateZ(1px) scale(0.8) rotate(15deg) !important;
+    }
+}
+
+/* Classe adicional para iOS */
+.polaroid-carousel.ios-fix .polaroid.prev {
+    z-index: 6 !important;
+}

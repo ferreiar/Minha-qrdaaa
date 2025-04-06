@@ -1,0 +1,30 @@
+/* Estilos específicos para o carrossel azul */
+.carousel-blue {
+    outline: 6px solid #0C1445; /* Cor azul para o outline */
+}
+
+.carousel-blue-container {
+    border: 3px solid #87CEEB;
+    box-shadow: 0 0 0 6px #0C1445;
+}
+
+#third-section .carousel-logo {
+    position: absolute;
+    top: -30px;
+    right: -15px;
+    width: 80px;
+    height: auto;
+    z-index: 101;
+}
+
+/* Garantir que o container de borboletas fique atrás do conteúdo */
+#butterfly-container {
+    z-index: 0;
+}
+
+/* Garantir que o conteúdo da seção 3 fique acima das borboletas */
+#third-section .carousel-container,
+#third-section .escritabai {
+    position: relative;
+    z-index: 10;
+}

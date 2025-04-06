@@ -1,0 +1,67 @@
+/* Estilos para o carrossel */
+.carousel {
+    width: 100%;
+    max-width: 250px; /* Ajusta o tamanho */
+    overflow: hidden;
+    position: relative;
+    border-radius: 6px;
+    outline: 6px solid #FFD700;
+}
+
+.carousel-container {
+    padding: 5px;
+    border: 3px solid #1A237E;
+    box-shadow: 0 0 0 6px #FFD700;
+    border-radius: 6px;
+    position: relative;
+    display: flex; /* Impede que o carrossel estenda para baixo */
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-logo {
+    position: absolute;
+    top: -30px; /* Ajusta para ficar visível */
+    right: -15px;
+    width: 80px; /* Mantém o girassol visível */
+    height: auto;
+    z-index: 101;
+}
+
+.carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: auto; /* Evita que ele cresça para baixo */
+}
+
+.carousel-item {
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+.carousel-item img {
+    width: 100%;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .carousel {
+        max-width: 100%; /* Carrossel ocupa toda a largura em telas menores */
+    }
+
+    .carousel-container {
+        width: 90%; /* Reduz a largura do carrossel */
+        max-width: 300px; /* Limite máximo para não ficar muito grande */
+    }
+
+    .carousel img {
+        width: 100%; /* Garante que as imagens fiquem dentro do contêiner */
+        height: auto; /* Mantém a proporção */
+    }
+
+    .carousel-logo {
+        top: -40px; /* Levanta a logo para fora do carrossel */
+        right: -27px; /* Move a logo para cobrir a borda */
+        width: 70px; /* Ajuste fino no tamanho */
+    }
+}

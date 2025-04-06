@@ -1,0 +1,26 @@
+.cursor {
+    display: inline-block;
+    width: 3px;
+    background-color: white;
+    margin-left: 4px;
+    animation: blink 1s infinite;
+    height: 1.2em; /* Altura proporcional ao texto */
+    vertical-align: text-bottom; /* Alinha na base do texto */
+}
+
+/* Animação de piscar */
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+/* Remover a animação de piscar após 5 segundos */
+@keyframes stop-blink {
+    to {
+        opacity: 0;
+    }
+}

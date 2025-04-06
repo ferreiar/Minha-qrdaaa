@@ -1,0 +1,57 @@
+#cabeca .container {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#cabeca {
+    z-index: 1000 !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: all 0.3s ease;
+    padding: 2px 0; /* Reduzir o padding vertical para diminuir a altura */
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0 15px;
+    font-size: 15pt;
+    position: relative;
+}
+
+nav .nav-link {
+    display: inline-block; /* Garante que o link se comporte como um bloco para a linha */
+}
+
+nav .nav-link::after {
+    content: "";
+    width: 0;
+    height: 3px; /* Linha um pouco mais fina */
+    background-color: transparent;
+    position: absolute;
+    bottom: -5px; /* Posição abaixo do texto */
+    left: 15px; /* Alinhamento com o texto */
+    transition: width 0.3s ease, background-color 0.3s ease;
+    border-radius: 2px;
+}
+
+nav .nav-link.active-link::after {
+    width: calc(100% - 30px);
+    background-color: #F4D03F;
+}
+
+nav .nav-link:hover {
+    opacity: .85;
+}
+
+nav a img {
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .bg-nav{
+        background-color: transparent;
+    }
+}
