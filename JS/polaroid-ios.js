@@ -20,77 +20,41 @@ document.addEventListener('DOMContentLoaded', function() {
         let currentIndex = 0;
         let isAnimating = false;
         
-        // Função para atualizar as polaroids no iOS
+        // Função para atualizar as polaroids no iOS com hardware acceleration
         function updateIOSPolaroids() {
-            // Esconder todas as polaroids primeiro
-            polaroids.forEach(polaroid => {
-                polaroid.style.display = 'none';
-                polaroid.classList.remove('active', 'prev', 'next');
-            });
-            
             // Calcular índices
             const prevIndex = (currentIndex - 1 + polaroids.length) % polaroids.length;
             const nextIndex = (currentIndex + 1) % polaroids.length;
             
-            // Configurar polaroid anterior (esquerda)
-            const prevPolaroid = polaroids[prevIndex];
-            if (prevPolaroid) {
-                prevPolaroid.style.display = 'block';
-                prevPolaroid.classList.add('prev');
-                prevPolaroid.style.position = 'absolute';
-                prevPolaroid.style.left = '50%';
-                prevPolaroid.style.top = '50%';
-                prevPolaroid.style.marginLeft = '-125px';
-                prevPolaroid.style.marginTop = '-150px';
-                prevPolaroid.style.transform = 'translateX(-200px) scale(0.8) rotate(-15deg)';
-                prevPolaroid.style.webkitTransform = 'translateX(-200px) scale(0.8) rotate(-15deg)';
-                prevPolaroid.style.opacity = '0.6';
-                prevPolaroid.style.zIndex = '6';
-                prevPolaroid.style.transition = 'none';
-                // Forçar repaint
-                void prevPolaroid.offsetWidth;
-                prevPolaroid.style.transition = 'all 0.3s ease-in-out';
-            }
+            // Importante: Definir todos os estados ANTES de modificar o display
+            polaroids.forEach((polaroid, index) => {
+                // Remover todas as classes primeiro
+                polaroid.classList.remove('active', 'prev', 'next');
+                
+                // Atribuir novas classes baseadas no índice
+                if (index === currentIndex) {
+                    polaroid.classList.add('active');
+                } else if (index === prevIndex) {
+                    polaroid.classList.add('prev');
+                } else if (index === nextIndex) {
+                    polaroid.classList.add('next');
+                }
+            });
             
-            // Configurar polaroid ativa (central)
-            const activePolaroid = polaroids[currentIndex];
-            if (activePolaroid) {
-                activePolaroid.style.display = 'block';
-                activePolaroid.classList.add('active');
-                activePolaroid.style.position = 'absolute';
-                activePolaroid.style.left = '50%';
-                activePolaroid.style.top = '50%';
-                activePolaroid.style.marginLeft = '-125px';
-                activePolaroid.style.marginTop = '-150px';
-                activePolaroid.style.transform = 'translateX(0) scale(1) rotate(0deg)';
-                activePolaroid.style.webkitTransform = 'translateX(0) scale(1) rotate(0deg)';
-                activePolaroid.style.opacity = '1';
-                activePolaroid.style.zIndex = '10';
-                activePolaroid.style.transition = 'none';
-                // Forçar repaint
-                void activePolaroid.offsetWidth;
-                activePolaroid.style.transition = 'all 0.3s ease-in-out';
-            }
-            
-            // Configurar próxima polaroid (direita)
-            const nextPolaroid = polaroids[nextIndex];
-            if (nextPolaroid) {
-                nextPolaroid.style.display = 'block';
-                nextPolaroid.classList.add('next');
-                nextPolaroid.style.position = 'absolute';
-                nextPolaroid.style.left = '50%';
-                nextPolaroid.style.top = '50%';
-                nextPolaroid.style.marginLeft = '-125px';
-                nextPolaroid.style.marginTop = '-150px';
-                nextPolaroid.style.transform = 'translateX(200px) scale(0.8) rotate(15deg)';
-                nextPolaroid.style.webkitTransform = 'translateX(200px) scale(0.8) rotate(15deg)';
-                nextPolaroid.style.opacity = '0.6';
-                nextPolaroid.style.zIndex = '6';
-                nextPolaroid.style.transition = 'none';
-                // Forçar repaint
-                void nextPolaroid.offsetWidth;
-                nextPolaroid.style.transition = 'all 0.3s ease-in-out';
-            }
+            // Em um segundo passo, atualize o display para evitar a cintilação
+            polaroids.forEach((polaroid, index) => {
+                if (index === currentIndex || index === prevIndex || index === nextIndex) {
+                    polaroid.style.display = 'block';
+                    // Forçar repaint para garantir que as transições funcionem
+                    void polaroid.offsetWidth;
+                } else {
+                    // Pequeno atraso antes de esconder elementos não visíveis
+                    // para evitar problemas de renderização
+                    setTimeout(() => {
+                        polaroid.style.display = 'none';
+                    }, 50);
+                }
+            });
         }
         
         // Função para ir para a polaroid anterior
@@ -99,11 +63,23 @@ document.addEventListener('DOMContentLoaded', function() {
             
             isAnimating = true;
             currentIndex = (currentIndex - 1 + polaroids.length) % polaroids.length;
-            updateIOSPolaroids();
             
-            setTimeout(() => {
-                isAnimating = false;
-            }, 300);
+            // Garantir que o elemento anterior esteja visível antes da transição
+            const prevIndex = (currentIndex - 1 + polaroids.length) % polaroids.length;
+            if (polaroids[prevIndex]) {
+                polaroids[prevIndex].style.display = 'block';
+                void polaroids[prevIndex].offsetWidth;
+            }
+            
+            // Aplicar classes com um pequeno atraso para garantir que o DOM seja atualizado
+            requestAnimationFrame(() => {
+                updateIOSPolaroids();
+                
+                // Permitir nova animação após um tempo
+                setTimeout(() => {
+                    isAnimating = false;
+                }, 500); // Tempo ligeiramente aumentado para garantir que a animação termine
+            });
         }
         
         // Função para ir para a próxima polaroid
@@ -112,25 +88,82 @@ document.addEventListener('DOMContentLoaded', function() {
             
             isAnimating = true;
             currentIndex = (currentIndex + 1) % polaroids.length;
-            updateIOSPolaroids();
             
-            setTimeout(() => {
-                isAnimating = false;
-            }, 300);
+            // Garantir que o próximo elemento esteja visível antes da transição
+            const nextIndex = (currentIndex + 1) % polaroids.length;
+            if (polaroids[nextIndex]) {
+                polaroids[nextIndex].style.display = 'block';
+                void polaroids[nextIndex].offsetWidth;
+            }
+            
+            // Aplicar classes com um pequeno atraso para garantir que o DOM seja atualizado
+            requestAnimationFrame(() => {
+                updateIOSPolaroids();
+                
+                // Permitir nova animação após um tempo
+                setTimeout(() => {
+                    isAnimating = false;
+                }, 500); // Tempo ligeiramente aumentado para garantir que a animação termine
+            });
         }
         
         // Substituir os event listeners dos botões
         if (prevBtn) {
             prevBtn.removeEventListener('click', window.goToPrev);
-            prevBtn.addEventListener('click', goToPrev);
+            prevBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                goToPrev();
+            });
         }
         
         if (nextBtn) {
             nextBtn.removeEventListener('click', window.goToNext);
-            nextBtn.addEventListener('click', goToNext);
+            nextBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                goToNext();
+            });
+        }
+        
+        // Adicionar suporte para gestos de swipe
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        if (polaroidCarousel) {
+            polaroidCarousel.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+            
+            polaroidCarousel.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+        }
+        
+        function handleSwipe() {
+            const swipeThreshold = 50; // Mínimo de pixels para considerar um swipe
+            
+            if (touchEndX < touchStartX - swipeThreshold) {
+                // Swipe para a esquerda - próxima polaroid
+                goToNext();
+            }
+            
+            if (touchEndX > touchStartX + swipeThreshold) {
+                // Swipe para a direita - polaroid anterior
+                goToPrev();
+            }
         }
         
         // Inicializar o carrossel para iOS
+        // Garantir que todos os elementos necessários estejam visíveis desde o início
+        polaroids.forEach((polaroid, index) => {
+            if (index === currentIndex || 
+                index === (currentIndex - 1 + polaroids.length) % polaroids.length || 
+                index === (currentIndex + 1) % polaroids.length) {
+                polaroid.style.display = 'block';
+            } else {
+                polaroid.style.display = 'none';
+            }
+        });
         updateIOSPolaroids();
         
         // Sobrescrever as funções globais para iOS
