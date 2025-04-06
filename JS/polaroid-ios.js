@@ -124,35 +124,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
         
-        // Adicionar suporte para gestos de swipe
-        let touchStartX = 0;
-        let touchEndX = 0;
-        
-        if (polaroidCarousel) {
-            polaroidCarousel.addEventListener('touchstart', function(e) {
-                touchStartX = e.changedTouches[0].screenX;
-            }, { passive: true });
-            
-            polaroidCarousel.addEventListener('touchend', function(e) {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-            }, { passive: true });
-        }
-        
-        function handleSwipe() {
-            const swipeThreshold = 50; // Mínimo de pixels para considerar um swipe
-            
-            if (touchEndX < touchStartX - swipeThreshold) {
-                // Swipe para a esquerda - próxima polaroid
-                goToNext();
-            }
-            
-            if (touchEndX > touchStartX + swipeThreshold) {
-                // Swipe para a direita - polaroid anterior
-                goToPrev();
-            }
-        }
-        
         // Inicializar o carrossel para iOS
         // Garantir que todos os elementos necessários estejam visíveis desde o início
         polaroids.forEach((polaroid, index) => {
