@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,398 +17,149 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="shortcut icon" href="imgs/Logo girassol.png" type="image/x-icon">
 </head>
-
 <body class="text-white">
-
-   <!-- Navbar -->
-<nav id="cabeca" class="fixed top-0 left-0 w-full bg-transparent z-50 transition-all duration-300">
-    <div class="container mx-auto flex justify-between items-center p-4">
-        <!-- Logo - Agora com função de recarregar a página -->
-        <a href="#first-section" id="logo-link"><img class="logoImg" src="imgs/Logo girassol.png" alt="Logo Girassol"></a>
-
-        <!-- Menu Hamburguer (Mobile) -->
-        <button class="md:hidden block text-white focus:outline-none" id="menu-button">
-            <i class="fas fa-bars text-2xl"></i>
-        </button>
-
-        <!-- Menu Desktop -->
-        <ul class="hidden md:flex gap-10" id="menu">
-            <li><a href="#first-section" class="text-[25px] FunnelDi text-white font-semibold nav-link">Início</a></li>
-            <li><a href="#second-section" class="text-[25px] FunnelDi text-white font-semibold nav-link">Segunda Seção</a></li>
-            <li><a href="#third-section" class="text-[25px] FunnelDi text-white font-semibold nav-link">Terceira Seção</a></li>
-            <li><a href="#fourt-section" class="text-[25px] FunnelDi text-white font-semibold nav-link">Polaroids</a></li>
-        </ul>
-
-        <!-- Menu Mobile - Agora com fundo quadrado -->
-        <div class="mobile-menu-container md:hidden hidden absolute right-4 top-16 z-40" id="mobile-menu-container">
-            <ul class="flex flex-col space-y-4 text-center p-6 rounded-lg shadow-lg" id="mobile-menu">
-                <li><a href="#first-section" class="text-[20px] FunnelDi text-white font-semibold nav-link">Início</a></li>
-                <li><a href="#second-section" class="text-[20px] FunnelDi text-white font-semibold nav-link">Segunda Seção</a></li>
-                <li><a href="#third-section" class="text-[20px] FunnelDi text-white font-semibold nav-link">Terceira Seção</a></li>
-                <li><a href="#fourt-section" class="text-[20px] FunnelDi text-white font-semibold nav-link">Polaroids</a></li>
+    <!-- Navbar -->
+    <nav id="cabeca" class="fixed top-0 left-0 w-full bg-transparent z-50 transition-all duration-300">
+        <div class="container mx-auto flex justify-between items-center p-4">
+            <a href="#first-section" id="logo-link"><img class="logoImg" src="imgs/Logo girassol.png" alt="Logo Girassol"></a>
+            <button class="md:hidden block text-white focus:outline-none" id="menu-button"><i class="fas fa-bars text-2xl"></i></button>
+            <ul class="hidden md:flex gap-10" id="menu">
+                <li><a href="#first-section" class="text-[25px] FunnelDi text-white font-semibold nav-link">Início</a></li>
+                <li><a href="#second-section" class="text-[25px] FunnelDi text-white font-semibold nav-link">Segunda Seção</a></li>
+                <li><a href="#third-section" class="text-[25px] FunnelDi text-white font-semibold nav-link">Terceira Seção</a></li>
+                <li><a href="#fourt-section" class="text-[25px] FunnelDi text-white font-semibold nav-link">Polaroids</a></li>
             </ul>
+            <div class="mobile-menu-container md:hidden hidden absolute right-4 top-16 z-40" id="mobile-menu-container">
+                <ul class="flex flex-col space-y-4 text-center p-6 rounded-lg shadow-lg" id="mobile-menu">
+                    <li><a href="#first-section" class="text-[20px] FunnelDi text-white font-semibold nav-link">Início</a></li>
+                    <li><a href="#second-section" class="text-[20px] FunnelDi text-white font-semibold nav-link">Segunda Seção</a></li>
+                    <li><a href="#third-section" class="text-[20px] FunnelDi text-white font-semibold nav-link">Terceira Seção</a></li>
+                    <li><a href="#fourt-section" class="text-[20px] FunnelDi text-white font-semibold nav-link">Polaroids</a></li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
     <!-- Primeira seção com animação -->
     <section id="first-section" class="bg-noite w-screen h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute top-0 left-0 w-full h-full"></div>
         <div class="relative text-center z-10">
             <h2 class="text-3xl md:text-5xl font-bold">
-                <span class="typing-animation"
-                    data-text="<span class='FunnelDi'>Olá <span class='Pacifico text-[#F4D03F]'>meu girassol</span>, tudo bem? Você está brilhando muito hoje.</span>"></span>
+                <span class="typing-animation" data-text="<span class='FunnelDi'>Olá <span class='Pacifico text-[#F4D03F]'>meu girassol</span>, tudo bem? Você está brilhando muito hoje.</span>"></span>
                 <span class="typing-cursor cursor"></span>
             </h2>
         </div>
     </section>
 
-    <section id="second-section"
-        class="bg-[#0C1445] w-screen min-h-screen flex flex-col md:flex-row items-center md:items-start justify-center px-6 py-10 md:p-8 overflow-hidden">
-        <!-- Div do conteúdo esquerdo -->
+    <!-- Segunda seção -->
+    <section id="second-section" class="bg-[#0C1445] w-screen min-h-screen flex flex-col md:flex-row items-center md:items-start justify-center px-6 py-10 md:p-8 overflow-hidden">
         <div class="escritabai md:w-1/2 w-full text-center md:text-left mb-8 md:mb-0 md:pr-8">
-            <!-- Título e texto principal não mudam -->
             <h2 class="text-3xl md:text-4xl font-bold mb-4 max-w-full break-words">
-                <span class="typing-animation"
-                    data-text="<span class='FunnelDi'>E foi assim que, o <span class='Pacifico text-[#F4D03F]'>meu sol</span> nasceu aquele dia.</span>"></span>
+                <span class="typing-animation" data-text="<span class='FunnelDi'>E foi assim que, o <span class='Pacifico text-[#F4D03F]'>meu sol</span> nasceu aquele dia.</span>"></span>
                 <span class="typing-cursor cursor"></span>
             </h2>
-            <p class="text-lg FunnelDi max-w-full">
-                Bem, esse dia foi muito especial para mim, pois marcava o incio de algo importante. Apesar do
-                nevorsismo, tive uma noite inctível ao lado
-                de voce. Um dos momentos inesquecíveis foi quando você se apoio no meu ombro durante o filme, me fez
-                sentir muito feliz. Sou grato a Deus por
-                essa flor em minha vida.
-            </p>
+            <p class="text-lg FunnelDi max-w-full">Bem, esse dia foi muito especial para mim, pois marcava o incio de algo importante. Apesar do nevorsismo, tive uma noite inctível ao lado de voce. Um dos momentos inesquecíveis foi quando você se apoio no meu ombro durante o filme, me fez sentir muito feliz. Sou grato a Deus por essa flor em minha vida.</p>
             <br>
-            <!-- Texto do contador com ajuste apenas para centralizar no mobile -->
             <div class="contbai flex flex-col items-center md:items-start">
-                <p class="text-center FunnelDi max-w-full break-words">
-                    <span class="ml-[30px] Pacifico text-[#F4D03F]">Meu sol</span> começou a brilhar há:
-                </p>
+                <p class="text-center FunnelDi max-w-full break-words"><span class="ml-[30px] Pacifico text-[#F4D03F]">Meu sol</span> começou a brilhar há:</p>
                 <br>
-
-                <div id="contador"
-                    class="relative p-3 contbaii max-w-full FunnelDi text-white font-bold text-sm sm:text-base md:text-lg text-center bg-[#0C1445] border-[5px] border-[#FDD700] rounded-2xl shadow-lg">
-                    <span id="years"></span> anos,
-                    <span id="months"></span> meses,
-                    <span id="days"></span> dias,
-                    <span id="hours"></span> horas,
-                    <span id="minutes"></span> minutos,
-                    <span id="seconds"></span> segundos.
+                <div id="contador" class="relative p-3 contbaii max-w-full FunnelDi text-white font-bold text-sm sm:text-base md:text-lg text-center bg-[#0C1445] border-[5px] border-[#FDD700] rounded-2xl shadow-lg">
+                    <span id="years"></span> anos, <span id="months"></span> meses, <span id="days"></span> dias, <span id="hours"></span> horas, <span id="minutes"></span> minutos, <span id="seconds"></span> segundos.
                 </div>
             </div>
         </div>
-
-        <!-- Carrossel da segunda seção -->
         <div class="carousel-container w-full md:w-auto carrobai md:mt-0">
             <div class="carousel">
                 <div class="carousel-inner">
-                    <div class="carousel-item">
-                        <img src="imgs/Primeiro dia pt1.jpeg" alt="Imagem 1">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="imgs/Primeiro dia pt2.jpeg" alt="Imagem 2">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="imgs/Primeiro dia pt3.jpeg" alt="Imagem 3">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="imgs/Segundo dia pt 1.jpeg" alt="Imagem 4">
-                    </div>
+                    <div class="carousel-item"><img src="imgs/Primeiro dia pt1.jpeg" alt="Imagem 1"></div>
+                    <div class="carousel-item"><img src="imgs/Primeiro dia pt2.jpeg" alt="Imagem 2"></div>
+                    <div class="carousel-item"><img src="imgs/Primeiro dia pt3.jpeg" alt="Imagem 3"></div>
+                    <div class="carousel-item"><img src="imgs/Segundo dia pt 1.jpeg" alt="Imagem 4"></div>
                 </div>
             </div>
             <img src="imgs/Logo girassol.png" alt="Logo" class="carousel-logo">
         </div>
     </section>
 
-    <section id="third-section"
-        class="bg-[#87CEEB] w-screen min-h-screen flex flex-col md:flex-row items-center md:items-start justify-center px-6 py-10 md:p-8 overflow-hidden relative">
-        <!-- Carrossel da terceira seção -->
+    <!-- Terceira seção -->
+    <section id="third-section" class="bg-[#87CEEB] w-screen min-h-screen flex flex-col md:flex-row items-center md:items-start justify-center px-6 py-10 md:p-8 overflow-hidden relative">
         <div class="carousel-container carousel-blue-container w-full md:w-auto carrobai md:mt-0 order-2 md:order-1">
             <div class="carousel carousel-blue">
                 <div class="carousel-inner">
-                    <div class="carousel-item">
-                        <img src="imgs/Primeira vez na casa dela pt1.jpeg" alt="Borboleta 1">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="imgs/Primeira vez na casa dela pt2.jpeg" alt="Borboleta 2">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="imgs/Segunda vez na casa dela.jpeg" alt="Borboleta 3">
-                    </div>
+                    <div class="carousel-item"><img src="imgs/Primeira vez na casa dela pt1.jpeg" alt="Borboleta 1"></div>
+                    <div class="carousel-item"><img src="imgs/Primeira vez na casa dela pt2.jpeg" alt="Borboleta 2"></div>
+                    <div class="carousel-item"><img src="imgs/Segunda vez na casa dela.jpeg" alt="Borboleta 3"></div>
                 </div>
             </div>
             <img src="imgs/Borboleta Azul.png" alt="borbolg Borboleta Logo" class="carousel-logo">
         </div>
-
-        <!-- Div do conteúdo direito -->
         <div class="escritabai md:w-1/2 w-full text-center md:text-left mb-8 md:mb-0 md:pl-8 order-1 md:order-2">
-            <!-- Título com animação de digitação -->
             <h2 class="text-3xl md:text-4xl font-bold mb-4 max-w-full break-words">
-                <span class="typing-animation"
-                    data-text="<span class='FunnelDi text-white'>Voando como <span class='Pacifico text-[#568EA7]'>borboletas</span> em um céu azul.</span>"></span>
+                <span class="typing-animation" data-text="<span class='FunnelDi text-white'>Voando como <span class='Pacifico text-[#568EA7]'>borboletas</span> em um céu azul.</span>"></span>
                 <span class="typing-cursor cursor"></span>
             </h2>
-
-            <!-- Texto sem animação -->
-            <p class="text-lg FunnelDi max-w-full text-white">
-                O tão sonhado dia de te dar aquela surpresa... Estava ansioso para dar uma borboleta a uma flor. Quando
-                a entreguei, a flor sorriu, chorou de alegria e, ao fim, sabia que um novo capítulo se iniciava. Mas não
-                qualquer capítulo, e sim um capítulo especial, onde ela sabia que caminharíamos juntos.
-            </p>
+            <p class="text-lg FunnelDi max-w-full text-white">O tão sonhado dia de te dar aquela surpresa... Estava ansioso para dar uma borboleta a uma flor. Quando a entreguei, a flor sorriu, chorou de alegria e, ao fim, sabia que um novo capítulo se iniciava. Mas não qualquer capítulo, e sim um capítulo especial, onde ela sabia que caminharíamos juntos.</p>
             <br>
-            <!-- Contador de tempo de relacionamento no estilo de referência -->
             <div class="contbai flex flex-col items-center md:items-start">
-                <p class="text-center FunnelDi max-w-full break-words">
-                    <span class="ml-[30px] Pacifico text-[#568EA7]">Minha borboleta</span> está comigo há:
-                </p>
+                <p class="text-center FunnelDi max-w-full break-words"><span class="ml-[30px] Pacifico text-[#568EA7]">Minha borboleta</span> está comigo há:</p>
                 <br>
-                <div id="contador2"
-                    class="relative p-3 contbaii max-w-full FunnelDi text-white font-bold text-sm sm:text-base md:text-lg text-center bg-[#0C1445] border-[5px] border-[#0C1445] rounded-2xl shadow-lg">
-                    <span id="years2"></span> anos,
-                    <span id="months2"></span> meses,
-                    <span id="days2"></span> dias,
-                    <span id="hours2"></span> horas,
-                    <span id="minutes2"></span> minutos,
-                    <span id="seconds2"></span> segundos.
+                <div id="contador2" class="relative p-3 contbaii max-w-full FunnelDi text-white font-bold text-sm sm:text-base md:text-lg text-center bg-[#0C1445] border-[5px] border-[#0C1445] rounded-2xl shadow-lg">
+                    <span id="years2"></span> anos, <span id="months2"></span> meses, <span id="days2"></span> dias, <span id="hours2"></span> horas, <span id="minutes2"></span> minutos, <span id="seconds2"></span> segundos.
                 </div>
             </div>
         </div>
-        </div>
-
-        <!-- Container para as borboletas -->
         <div id="butterfly-container" class="absolute top-0 left-0 w-full h-full overflow-hidden"></div>
     </section>
 
+    <!-- Quarta seção - Polaroids -->
     <section id="fourt-section" class="bg-campo w-screen min-h-screen flex flex-col items-center justify-center px-6 py-10 md:p-8 overflow-hidden relative">
         <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center polabai">
             <span class="FunnelDi">Nossos momentos em <span class="Pacifico text-[#F4D03F]">polaroids</span></span>
         </h2>
-        
-        <!-- Carrossel de Polaroids -->
         <div class="polalad polaroid-carousel">
             <div class="polaroid-carousel-inner">
-                <!-- Polaroids serão adicionadas aqui -->
-                <div class="polaroid-item" style="--index: 0;">
-                    <div class="polaroid">
-                        <img src="imgs/Primeira vez dela na minha casa pt1.jpeg" alt="Polaroid 1">
-                        <div class="polaroid-caption">Esse dia achei que voce ia dormir aq em casa kkkk</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 1;">
-                    <div class="polaroid">
-                        <img src="imgs/Primeira vez dela na minha casa pt2.jpeg" alt="Polaroid 2">
-                        <div class="polaroid-caption">Mai nao mimiu, so que demos muita risada kkkkkkkkk</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 2;">
-                    <div class="polaroid">
-                        <img src="imgs/Oitava vez saindo pt1.jpeg" alt="Polaroid 3">
-                        <div class="polaroid-caption">Dia muito louco</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 3;">
-                    <div class="polaroid">
-                        <img src="imgs/Oitava vez saindo pt2.jpeg" alt="Polaroid 4">
-                        <div class="polaroid-caption">Fofocas assim sabe</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 4;">
-                    <div class="polaroid">
-                        <img src="imgs/Moana 2 pt1.jpeg" alt="Polaroid 5">
-                        <div class="polaroid-caption">Minha Sally</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 5;">
-                    <div class="polaroid">
-                        <img src="imgs/Moana 2 pt2.jpeg" alt="Polaroid 6">
-                        <div class="polaroid-caption">Amassou esse dia</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 6;">
-                    <div class="polaroid">
-                        <img src="imgs/Moana 2 pt3.jpeg" alt="Polaroid 7">
-                        <div class="polaroid-caption">Queria voltar nesse dia</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 7;">
-                    <div class="polaroid">
-                        <img src="imgs/Moana 2 pt4.jpeg" alt="Polaroid 8">
-                        <div class="polaroid-caption">Mai é linda memo</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 8;">
-                    <div class="polaroid">
-                        <img src="imgs/Agape pt1.jpeg" alt="Polaroid 9">
-                        <div class="polaroid-caption">Dia bom, quase chorou né</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 9;">
-                    <div class="polaroid">
-                        <img src="imgs/Aniversario isaac pt1.jpeg" alt="Polaroid 10">
-                        <div class="polaroid-caption">Achei que as crianças ia sequestrar você</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 10;">
-                    <div class="polaroid">
-                        <img src="imgs/boulevas pt1.jpeg" alt="Polaroid 11">
-                        <div class="polaroid-caption">boulevas como sempre</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 11;">
-                    <div class="polaroid">
-                        <img src="imgs/boulevas p2.jpeg" alt="Polaroid 12">
-                        <div class="polaroid-caption">mas, nunca me canso</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 12;">
-                    <div class="polaroid">
-                        <img src="imgs/comprar material.jpeg" alt="Polaroid 13">
-                        <div class="polaroid-caption">Achei que você ia sair no soco com suas irmãs</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 13;">
-                    <div class="polaroid">
-                        <img src="imgs/Igreja dela.jpeg" alt="Polaroid 14">
-                        <div class="polaroid-caption">Que voz doce hein!!</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 14;">
-                    <div class="polaroid">
-                        <img src="imgs/niver dela pt1.jpeg" alt="Polaroid 15">
-                        <div class="polaroid-caption">Esse dia foi especial para mim kkkk</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 15;">
-                    <div class="polaroid">
-                        <img src="imgs/niver dela pt2.jpeg" alt="Polaroid 16">
-                        <div class="polaroid-caption">Eu te amo branquela kkkkkkkkk</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 16;">
-                    <div class="polaroid">
-                        <img src="imgs/Pesqueiro pt1.jpeg" alt="Polaroid 17">
-                        <div class="polaroid-caption">Dia diferente muita treta dps kkkkkkk</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 17;">
-                    <div class="polaroid">
-                        <img src="imgs/Pesqueiro pt2.jpeg" alt="Polaroid 18">
-                        <div class="polaroid-caption"> Mas no fim foi bom, queria mais porção kkkkk</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 18;">
-                    <div class="polaroid">
-                        <img src="imgs/zoas pt1.jpeg" alt="Polaroid 19">
-                        <div class="polaroid-caption">Vamos zuar um pouco né kkkkk</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 19;">
-                    <div class="polaroid">
-                        <img src="imgs/zoas pt2.jpeg" alt="Polaroid 20">
-                        <div class="polaroid-caption">se nao tiver isso não sou eu kkkkk</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 20;">
-                    <div class="polaroid">
-                        <img src="imgs/zoas pt3.jpeg" alt="Polaroid 21">
-                        <div class="polaroid-caption">Essa é a melhor para mim kkkkkk</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 21;">
-                    <div class="polaroid">
-                        <img src="imgs/zoas pt4.jpeg" alt="Polaroid 22">
-                        <div class="polaroid-caption">Esse dia ate fiz video pedindo socorro kkkkkk</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 22;">
-                    <div class="polaroid">
-                        <img src="imgs/zoas pt5.jpeg" alt="Polaroid 23">
-                        <div class="polaroid-caption">Não lembro oq aconteceu aq nesse dia</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 23;">
-                    <div class="polaroid">
-                        <img src="imgs/zoas pt6.jpeg" alt="Polaroid 24">
-                        <div class="polaroid-caption">Mas, com certeza foi bom</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 24;">
-                    <div class="polaroid">
-                        <img src="imgs/Primeiro dia pt1.jpeg" alt="Polaroid 25">
-                        <div class="polaroid-caption">Um dia que que tive que fazer de tudo para nao ter vergonha</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 25;">
-                    <div class="polaroid">
-                        <img src="imgs/Primeiro dia pt2.jpeg" alt="Polaroid 26">
-                        <div class="polaroid-caption">No fim, deu tudo certo né cachinhos</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 26;">
-                    <div class="polaroid">
-                        <img src="imgs/Primeiro dia pt3.jpeg" alt="Polaroid 27">
-                        <div class="polaroid-caption">Top 1 melhores dias com voce meu amor</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 27;">
-                    <div class="polaroid">
-                        <img src="imgs/Segundo dia pt 1.jpeg" alt="Polaroid 28">
-                        <div class="polaroid-caption">Demorou um pouco, mas voltamos a nos ver</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 28;">
-                    <div class="polaroid">
-                        <img src="imgs/Primeira vez na casa dela pt1.jpeg" alt="Polaroid 29">
-                        <div class="polaroid-caption">Eu te</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 29;">
-                    <div class="polaroid">
-                        <img src="imgs/Primeira vez na casa dela pt2.jpeg" alt="Polaroid 30">
-                    <div class="polaroid-caption">Amoooooooo</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 30;">
-                    <div class="polaroid">
-                        <img src="imgs/Segunda vez na casa dela.jpeg" alt="Polaroid 31">
-                    <div class="polaroid-caption">Tecnico de TI seu né</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 31;">
-                    <div class="polaroid">
-                        <img src="imgs/Studio Ghibli.jpeg" alt=" Polaroid 32">
-                        <div class="polaroid-caption">Decidi por essa muito boa tambem kkkkkk</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 32;">
-                    <div class="polaroid">
-                        <img src="imgs/Niver Isa pt1.jpeg" alt="Polaroid 33">
-                        <div class="polaroid-caption">Gatonaaaaaaaaaaaa</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 33;">
-                    <div class="polaroid">
-                        <img src="imgs/Niver Isa pt2.jpeg" alt=" Polaroid 34">
-                        <div class="polaroid-caption">Birimbi birimbi meu kkkkkk</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 34;">
-                    <div class="polaroid">
-                        <img src="imgs/Niver Isa pt3.jpeg" alt=" Polaroid 35">
-                        <div class="polaroid-caption">Queria muito bjos esse dia, mas nao ganhei nenhum</div>
-                    </div>
-                </div>
-                <div class="polaroid-item" style="--index: 35;">
-                    <div class="polaroid">
-                        <img src="imgs/Niver Isa pt4.jpeg" alt=" Polaroid 36">
-                        <div class="polaroid-caption">AHHH MAI SE TA  LINDAAAA MEU AMOR</div>
-                    </div>
-                </div>
+                <!-- Polaroids -->
+                <div class="polaroid-item" style="--index: 0;"><div class="polaroid"><img src="imgs/Primeira vez dela na minha casa pt1.jpeg" alt="Polaroid 1"><div class="polaroid-caption">Esse dia achei que voce ia dormir aq em casa kkkk</div></div></div>
+                <div class="polaroid-item" style="--index: 1;"><div class="polaroid"><img src="imgs/Primeira vez dela na minha casa pt2.jpeg" alt="Polaroid 2"><div class="polaroid-caption">Mai nao mimiu, so que demos muita risada kkkkkkkkk</div></div></div>
+                <div class="polaroid-item" style="--index: 2;"><div class="polaroid"><img src="imgs/Oitava vez saindo pt1.jpeg" alt="Polaroid 3"><div class="polaroid-caption">Dia muito louco</div></div></div>
+                <div class="polaroid-item" style="--index: 3;"><div class="polaroid"><img src="imgs/Oitava vez saindo pt2.jpeg" alt="Polaroid 4"><div class="polaroid-caption">Fofocas assim sabe</div></div></div>
+                <div class="polaroid-item" style="--index: 4;"><div class="polaroid"><img src="imgs/Moana 2 pt1.jpeg" alt="Polaroid 5"><div class="polaroid-caption">Minha Sally</div></div></div>
+                <div class="polaroid-item" style="--index: 5;"><div class="polaroid"><img src="imgs/Moana 2 pt2.jpeg" alt="Polaroid 6"><div class="polaroid-caption">Amassou esse dia</div></div></div>
+                <div class="polaroid-item" style="--index: 6;"><div class="polaroid"><img src="imgs/Moana 2 pt3.jpeg" alt="Polaroid 7"><div class="polaroid-caption">Queria voltar nesse dia</div></div></div>
+                <div class="polaroid-item" style="--index: 7;"><div class="polaroid"><img src="imgs/Moana 2 pt4.jpeg" alt="Polaroid 8"><div class="polaroid-caption">Mai é linda memo</div></div></div>
+                <div class="polaroid-item" style="--index: 8;"><div class="polaroid"><img src="imgs/Agape pt1.jpeg" alt="Polaroid 9"><div class="polaroid-caption">Dia bom, quase chorou né</div></div></div>
+                <div class="polaroid-item" style="--index: 9;"><div class="polaroid"><img src="imgs/Aniversario isaac pt1.jpeg" alt="Polaroid 10"><div class="polaroid-caption">Achei que as crianças ia sequestrar você</div></div></div>
+                <div class="polaroid-item" style="--index: 10;"><div class="polaroid"><img src="imgs/boulevas pt1.jpeg" alt="Polaroid 11"><div class="polaroid-caption">boulevas como sempre</div></div></div>
+                <div class="polaroid-item" style="--index: 11;"><div class="polaroid"><img src="imgs/boulevas p2.jpeg" alt="Polaroid 12"><div class="polaroid-caption">mas, nunca me canso</div></div></div>
+                <div class="polaroid-item" style="--index: 12;"><div class="polaroid"><img src="imgs/comprar material.jpeg" alt="Polaroid 13"><div class="polaroid-caption">Achei que você ia sair no soco com suas irmãs</div></div></div>
+                <div class="polaroid-item" style="--index: 13;"><div class="polaroid"><img src="imgs/Igreja dela.jpeg" alt="Polaroid 14"><div class="polaroid-caption">Que voz doce hein!!</div></div></div>
+                <div class="polaroid-item" style="--index: 14;"><div class="polaroid"><img src="imgs/niver dela pt1.jpeg" alt="Polaroid 15"><div class="polaroid-caption">Esse dia foi especial para mim kkkk</div></div></div>
+                <div class="polaroid-item" style="--index: 15;"><div class="polaroid"><img src="imgs/niver dela pt2.jpeg" alt="Polaroid 16"><div class="polaroid-caption">Eu te amo branquela kkkkkkkkk</div></div></div>
+                <div class="polaroid-item" style="--index: 16;"><div class="polaroid"><img src="imgs/Pesqueiro pt1.jpeg" alt="Polaroid 17"><div class="polaroid-caption">Dia diferente muita treta dps kkkkkkk</div></div></div>
+                <div class="polaroid-item" style="--index: 17;"><div class="polaroid"><img src="imgs/Pesqueiro pt2.jpeg" alt="Polaroid 18"><div class="polaroid-caption">Mas no fim foi bom, queria mais porção kkkkk</div></div></div>
+                <div class="polaroid-item" style="--index: 18;"><div class="polaroid"><img src="imgs/zoas pt1.jpeg" alt="Polaroid 19"><div class="polaroid-caption">Vamos zuar um pouco né kkkkk</div></div></div>
+                <div class="polaroid-item" style="--index: 19;"><div class="polaroid"><img src="imgs/zoas pt2.jpeg" alt="Polaroid 20"><div class="polaroid-caption">se nao tiver isso não sou eu kkkkk</div></div></div>
+                <div class="polaroid-item" style="--index: 20;"><div class="polaroid"><img src="imgs/zoas pt3.jpeg" alt="Polaroid 21"><div class="polaroid-caption">Essa é a melhor para mim kkkkkk</div></div></div>
+                <div class="polaroid-item" style="--index: 21;"><div class="polaroid"><img src="imgs/zoas pt4.jpeg" alt="Polaroid 22"><div class="polaroid-caption">Esse dia ate fiz video pedindo socorro kkkkkk</div></div></div>
+                <div class="polaroid-item" style="--index: 22;"><div class="polaroid"><img src="imgs/zoas pt5.jpeg" alt="Polaroid 23"><div class="polaroid-caption">Não lembro oq aconteceu aq nesse dia</div></div></div>
+                <div class="polaroid-item" style="--index: 23;"><div class="polaroid"><img src="imgs/zoas pt6.jpeg" alt="Polaroid 24"><div class="polaroid-caption">Mas, com certeza foi bom</div></div></div>
+                <div class="polaroid-item" style="--index: 24;"><div class="polaroid"><img src="imgs/Primeiro dia pt1.jpeg" alt="Polaroid 25"><div class="polaroid-caption">Um dia que que tive que fazer de tudo para nao ter vergonha</div></div></div>
+                <div class="polaroid-item" style="--index: 25;"><div class="polaroid"><img src="imgs/Primeiro dia pt2.jpeg" alt="Polaroid 26"><div class="polaroid-caption">No fim, deu tudo certo né cachinhos</div></div></div>
+                <div class="polaroid-item" style="--index: 26;"><div class="polaroid"><img src="imgs/Primeiro dia pt3.jpeg" alt="Polaroid 27"><div class="polaroid-caption">Top 1 melhores dias com voce meu amor</div></div></div>
+                <div class="polaroid-item" style="--index: 27;"><div class="polaroid"><img src="imgs/Segundo dia pt 1.jpeg" alt="Polaroid 28"><div class="polaroid-caption">Demorou um pouco, mas voltamos a nos ver</div></div></div>
+                <div class="polaroid-item" style="--index: 28;"><div class="polaroid"><img src="imgs/Primeira vez na casa dela pt1.jpeg" alt="Polaroid 29"><div class="polaroid-caption">Eu te</div></div></div>
+                <div class="polaroid-item" style="--index: 29;"><div class="polaroid"><img src="imgs/Primeira vez na casa dela pt2.jpeg" alt="Polaroid 30"><div class="polaroid-caption">Amoooooooo</div></div></div>
+                <div class="polaroid-item" style="--index: 30;"><div class="polaroid"><img src="imgs/Segunda vez na casa dela.jpeg" alt="Polaroid 31"><div class="polaroid-caption">Tecnico de TI seu né</div></div></div>
+                <div class="polaroid-item" style="--index: 31;"><div class="polaroid"><img src="imgs/Studio Ghibli.jpeg" alt="Polaroid 32"><div class="polaroid-caption">Decidi por essa muito boa tambem kkkkkk</div></div></div>
+                <div class="polaroid-item" style="--index: 32;"><div class="polaroid"><img src="imgs/Niver Isa pt1.jpeg" alt="Polaroid 33"><div class="polaroid-caption">Gatonaaaaaaaaaaaa</div></div></div>
+                <div class="polaroid-item" style="--index: 33;"><div class="polaroid"><img src="imgs/Niver Isa pt2.jpeg" alt="Polaroid 34"><div class="polaroid-caption">Birimbi birimbi meu kkkkkk</div></div></div>
+                <div class="polaroid-item" style="--index: 34;"><div class="polaroid"><img src="imgs/Niver Isa pt3.jpeg" alt="Polaroid 35"><div class="polaroid-caption">Queria muito bjos esse dia, mas nao ganhei nenhum</div></div></div>
+                <div class="polaroid-item" style="--index: 35;"><div class="polaroid"><img src="imgs/Niver Isa pt4.jpeg" alt="Polaroid 36"><div class="polaroid-caption">AHHH MAI SE TA LINDAAAA MEU AMOR</div></div></div>
             </div>
         </div>
     </section>
+
+    <!-- Scripts -->
     <script src="JS/menu-mobile.js"></script>
     <script src="JS/cursor.js"></script>
     <script src="JS/carrossel.js"></script>
@@ -423,5 +173,4 @@
     <script src="JS/polaroid.js"></script>
     <script src="JS/polaroid-cell.js"></script>
 </body>
-
 </html>
