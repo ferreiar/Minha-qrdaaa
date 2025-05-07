@@ -4,7 +4,7 @@
     max-width: 1000px;
     height: 450px;
     margin: 0 auto;
-    perspective: 7000px; /* Aumentado para 2000px conforme solicitado */
+    perspective: 8000px; 
     transform-style: preserve-3d;
 }
 

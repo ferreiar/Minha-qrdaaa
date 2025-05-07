@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Aumentar o raio com base no número de itens para criar mais espaçamento
         // Quanto mais itens, maior o raio para evitar sobreposição
-        const baseRadius = 1350; // Raio base aumentado para criar mais espaçamento
+        const baseRadius = 1650; // Raio base aumentado para criar mais espaçamento
         const radius = Math.max(baseRadius, totalItems * 20); // Escala o raio com o número de itens
         
         // Calcular o ângulo entre cada item
