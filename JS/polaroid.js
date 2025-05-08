@@ -126,10 +126,10 @@ document.addEventListener('DOMContentLoaded', function() {
             clearInterval(autoplayInterval);
         }
         
-        // Definir novo intervalo para mudar a cada 3 segundos
+        // Definir novo intervalo para mudar a cada 5 segundos
         autoplayInterval = setInterval(() => {
             goToNext();
-        }, 3000);
+        }, 5000);
     }
     
     // Parar o autoplay (caso necessário)
