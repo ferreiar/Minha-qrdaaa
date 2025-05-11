@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Definir novo intervalo para mudar a cada 5 segundos
         autoplayInterval = setInterval(() => {
             goToNext();
-        }, 5000);
+        }, 5500);
     }
     
     // Parar o autoplay (caso necessário)
