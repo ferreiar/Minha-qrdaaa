@@ -7,56 +7,55 @@ function atualizarContador() {
         return;
     }
     
-    let anos = agora.getFullYear() - dataInicial.getFullYear();
-    let meses = agora.getMonth() - dataInicial.getMonth();
+    // Calcular a diferença em milissegundos
+    const diferenca = agora - dataInicial;
     
-    if (meses < 0) {
-        anos--;
-        meses += 12;
-    }
+    // Calcular anos, meses e dias de forma mais precisa
+    let anos = 0;
+    let meses = 0;
+    let dias = 0;
     
-    let dias = agora.getDate() - dataInicial.getDate();
+    // Criar uma data temporária para calcular
+    let tempDate = new Date(dataInicial);
     
-    if (dias < 0) {
-        meses--;
-        const ultimoDiaMesAnterior = new Date(
-            agora.getFullYear(),
-            agora.getMonth(),
-            0
-        ).getDate();
-        dias += ultimoDiaMesAnterior;
-        
-        if (meses < 0) {
-            anos--;
-            meses += 12;
+    // Calcular anos completos
+    while (true) {
+        const nextYear = new Date(tempDate);
+        nextYear.setFullYear(nextYear.getFullYear() + 1);
+        if (nextYear <= agora) {
+            anos++;
+            tempDate = nextYear;
+        } else {
+            break;
         }
     }
     
-    let horas = agora.getHours() - dataInicial.getHours();
-    let minutos = agora.getMinutes() - dataInicial.getMinutes();
-    let segundos = agora.getSeconds() - dataInicial.getSeconds();
-    
-    if (segundos < 0) {
-        minutos--;
-        segundos += 60;
+    // Calcular meses completos
+    while (true) {
+        const nextMonth = new Date(tempDate);
+        nextMonth.setMonth(nextMonth.getMonth() + 1);
+        if (nextMonth <= agora) {
+            meses++;
+            tempDate = nextMonth;
+        } else {
+            break;
+        }
     }
     
-    if (minutos < 0) {
-        horas--;
-        minutos += 60;
-    }
+    // Calcular dias restantes
+    dias = Math.floor((agora - tempDate) / (1000 * 60 * 60 * 24));
     
-    if (horas < 0) {
-        dias--;
-        horas += 24;
-    }
+    // Calcular horas, minutos e segundos
+    const horasTotal = Math.floor((agora - tempDate) / (1000 * 60 * 60)) % 24;
+    const minutosTotal = Math.floor((agora - tempDate) / (1000 * 60)) % 60;
+    const segundosTotal = Math.floor((agora - tempDate) / 1000) % 60;
     
     document.getElementById("years").textContent = anos;
     document.getElementById("months").textContent = meses;
     document.getElementById("days").textContent = dias;
-    document.getElementById("hours").textContent = horas.toString().padStart(2, '0');
-    document.getElementById("minutes").textContent = minutos.toString().padStart(2, '0');
-    document.getElementById("seconds").textContent = segundos.toString().padStart(2, '0');
+    document.getElementById("hours").textContent = horasTotal.toString().padStart(2, '0');
+    document.getElementById("minutes").textContent = minutosTotal.toString().padStart(2, '0');
+    document.getElementById("seconds").textContent = segundosTotal.toString().padStart(2, '0');
 }
 
 function resetarContador() {
